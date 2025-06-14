@@ -1,0 +1,80 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Gabarito&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*{
+    scroll-behavior: smooth;
+    font-family: "Gabarito", sans-serif;
+    
+}
+body {
+  background-image: url("./assets/bg.png");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.portfolio-card {
+    background-color: rgba(128, 128, 128, 0.173);
+}
+
+.gradient-text {
+    background: linear-gradient(white,rgba(134,78,173));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.prograss-bar::-webkit-progress-bar {
+    border-radius: 15px;
+    border: 1px solid gray;
+    background-color: transparent;
+}
+.prograss-bar::-webkit-progress-value {
+    border-radius: 15px;
+    background: linear-gradient(to right, violet,yellow);
+}
+@media (max-width: 499px) {
+    .prograss-bar {
+        height: 12px; /* Smaller height for small screens */
+    }
+}
+
+.scroll-bar::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+}
+
+.scroll-bar::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background-color: rgba(134,78,173);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+input[type="file"]::file-selector-button {
+  border: 2px solid #6c5ce7;
+  font-size: small;
+  border-radius: 0.2em;
+  background-color: #a29bfe;
+  transition: 1s;
+}
+input[type="file"] {
+    
+    font-size: small;
+    color: #f0f0f0;
+    
+   
+  
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: #81ecec;
+  border: 2px solid #00cec9;
+  cursor: pointer;
+}
