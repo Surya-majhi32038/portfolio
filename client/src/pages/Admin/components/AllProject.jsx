@@ -43,10 +43,10 @@ function AllProject() {
     };
     return (
         <div className="h-auto w-[90%] lg:mt-10 mt-20 justify-start lg:h-auto flex flex-col gap-10 scroll-auto px-1 lg:px-1">
-            <h3 className="gradient-text w-fit mx-auto lg:mb-10 text-3xl lg:text-4xl font-bold">
+            <h3 className="gradient-text w-fit mx-auto lg:mb-10 text-3xl lg:text-6xl font-bold">
                 My Projects
             </h3>
-             { projects.length == 0 && <h3 className="text-center text-gray-400 text-2xl lg:text-xl font-bold">
+             { projects.length == 0 && <h3 className="text-center text-gray-400 text-xl lg:text-2xl font-bold">
                         No Projects Found
             </h3>}
             <div className="grid lg:grid-cols-3 grid-cols-1 gap-5 h-auto w-full overflow-y-scroll scroll-bar px-1 lg:px-1">

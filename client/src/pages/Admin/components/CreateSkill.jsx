@@ -40,12 +40,12 @@ function CreateSkill() {
                 <div className='flex gap-1 flex-col mb-4 lg:mb-0'>
 
                     <label htmlFor="" className='lg:text-xl gradient-text'>Skill Name</label>
-                    <input placeholder='Enter the Skill' required value={skillName} onChange={(e)=> setSkillName(e.target.value)} className=' bg-transparent border-2   px-3 py-1  rounded-full text-gray-200 outline-none focus:border-purple-500 focus:pl-6 transition-all duration-100 lg:text-base text-sm font-mono mb-1  lg:mb-3' type="text" />
+                    <input placeholder='javascript' required value={skillName} onChange={(e)=> setSkillName(e.target.value)} className=' bg-transparent border-2   px-3 py-1  rounded-full text-gray-200 outline-none focus:border-purple-500 focus:pl-6 transition-all duration-100 lg:text-base text-sm font-mono mb-1  lg:mb-3' type="text" />
                 </div>
                 <div className='flex gap-1 flex-col mb-4 lg:mb-0'>
 
                     <label htmlFor="" className='lg:text-xl gradient-text'>Skill Level</label>
-                    <input placeholder='Enter the Level' required value={level} onChange={(e)=> setLevel(e.target.value)} className=' bg-transparent border-2   px-3 py-1  rounded-full text-gray-200 outline-none focus:border-purple-500 focus:pl-6 transition-all duration-100 lg:text-base text-sm font-mono mb-1  lg:mb-3' type="text" />
+                    <input placeholder='4 (1-5)' required value={level} onChange={(e)=> setLevel(e.target.value)} className=' bg-transparent border-2   px-3 py-1  rounded-full text-gray-200 outline-none focus:border-purple-500 focus:pl-6 transition-all duration-100 lg:text-base text-sm font-mono mb-1  lg:mb-3' type="text" />
                 </div>
 
                 

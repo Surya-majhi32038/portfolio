@@ -64,14 +64,14 @@ function CreateProject() {
                 <div className='flex gap-1 flex-col mb-4 lg:mb-0'>
 
                     <label htmlFor="" className='lg:text-xl gradient-text'>Project Name</label>
-                    <input placeholder='Enter the name' required value={name} onChange={(e)=> setname(e.target.value)} className=' bg-transparent border-2   px-3 py-1  rounded-full text-gray-200 outline-none focus:border-purple-500 focus:pl-6 transition-all duration-100 lg:text-base text-sm font-mono mb-1  lg:mb-3' type="text" />
+                    <input placeholder='portfolio site' required value={name} onChange={(e)=> setname(e.target.value)} className=' bg-transparent border-2   px-3 py-1  rounded-full text-gray-200 outline-none focus:border-purple-500 focus:pl-6 transition-all duration-100 lg:text-base text-sm font-mono mb-1  lg:mb-3' type="text" />
                 </div>
                 <div className='flex lg:gap-1 flex-col mb-4 lg:mb-0'>
                     <label className='lg:text-xl gradient-text' htmlFor="">Project Description</label>
                     <textarea
                         required value={description} onChange={(e)=> setDescription(e.target.value)}
                         className=' bg-transparent border-2 lg:px-3 lg:py-1  rounded-lg h-[150px] text-gray-200 outline-none focus:border-purple-500 focus:pl-6 transition-all duration-100 lg:text-base font-mono text-sm p-3  mb-3'
-                        placeholder="About the project..."
+                        placeholder="This is an Portfolio site..."
                         name="message"
                         id="" />
                 </div>
@@ -85,13 +85,13 @@ function CreateProject() {
                 <div className='flex lg:gap-1 flex-col '>
 
                     <label htmlFor="" className='lg:text-xl gradient-text'>Github link</label>
-                    <input  required value={githubLink} onChange={(e)=> setGithubLink(e.target.value)} placeholder='Enter the github link...' className=' bg-transparent border-2   px-3 py-1  rounded-full text-gray-200 outline-none focus:border-purple-500 focus:pl-6 transition-all duration-100 lg:text-base text-sm font-mono mb-4  lg:mb-3' type="url" />
+                    <input  required value={githubLink} onChange={(e)=> setGithubLink(e.target.value)} placeholder='http://www.github.com' className=' bg-transparent border-2   px-3 py-1  rounded-full text-gray-200 outline-none focus:border-purple-500 focus:pl-6 transition-all duration-100 lg:text-base text-sm font-mono mb-4  lg:mb-3' type="url" />
                 </div>
 
                 <div className='flex lg:gap-1 flex-col '>
 
                     <label htmlFor="" className='lg:text-xl gradient-text'>Live link</label>
-                    <input  required value={liveLink} onChange={(e)=> setLiveLink(e.target.value)} placeholder='Enter the live link...' className=' bg-transparent border-2   px-3 py-1  rounded-full text-gray-200 outline-none focus:border-purple-500 focus:pl-6 transition-all duration-100 lg:text-base text-sm font-mono mb-4  lg:mb-3' type="url" />
+                    <input  required value={liveLink} onChange={(e)=> setLiveLink(e.target.value)} placeholder='http://www.exapmple.live.com' className=' bg-transparent border-2   px-3 py-1  rounded-full text-gray-200 outline-none focus:border-purple-500 focus:pl-6 transition-all duration-100 lg:text-base text-sm font-mono mb-4  lg:mb-3' type="url" />
                 </div>
                 <button type='submit' className=" rounded-full lg:py-2 py-1 text-white bg-purple-500 hover:bg-purple-600 hover:text-gray-400 transition-all text-sm w-[50%] mx-auto delay-100 hover:scale-105">Add Project</button>
             </form>

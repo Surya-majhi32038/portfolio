@@ -3,7 +3,7 @@ import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 function ContactMe() {
     return (
-        <div className="mb-20 flex lg:flex-row flex-col lg:items-center lg:mb-36">
+        <div data-aos="zoom-in-up" className="mb-20 flex lg:flex-row flex-col lg:items-center lg:mb-36">
             <span className="gradient-text text-3xl lg:text-2xl uppercase lg:-rotate-90 mb-5 lg:mb-0 ">
                 get in touch
             </span>
@@ -37,22 +37,22 @@ function ContactMe() {
                     <input
                         type="text"
                         name="mail"
-                        placeholder="Enter your name.."
-                        className="bg-transparent border-2 lg:px-2 lg:mb-5 lg:py-3 rounded-lg gradient-text outline-none focus:border-purple-500 focus:pl-8 transition-all duration-100 lg:text-2xl font-mono text-base px-2 py-1 caret-gray-300 mb-3 "
+                        placeholder="Surya Majhi"
+                        className="bg-transparent border-2 lg:px-2 lg:mb-5 lg:py-3 rounded-lg gradient-text caret-gray-300 outline-none focus:border-purple-500 focus:pl-8 transition-all duration-100 lg:text-2xl font-mono text-base px-2 py-1  mb-3 "
                     />
                     <input
                         className="bg-transparent border-2 lg:px-2 lg:mb-5 lg:py-3 rounded-lg gradient-text outline-none focus:border-purple-500 focus:pl-8 transition-all duration-100 lg:text-2xl font-mono text-base px-2 py-1 caret-gray-300 mb-3 "
-                        placeholder="Enter your email.."
+                        placeholder="example@example.com"
                         type="mail"
                         name="mail"
                     />
                     <textarea
-                        className="bg-transparent border-2 lg:px-2 lg:mb-5 lg:py-3 rounded-lg gradient-text lg:h-[150px] outline-none focus:border-purple-500 focus:pl-8 transition-all duration-100 lg:text-2xl font-mono text-base px-2 py-1 caret-gray-300 mb-3 "
-                        placeholder="Enter your email.."
+                        className="bg-transparent border-2 lg:px-2 lg:mb-5 lg:py-3 rounded-lg gradient-text lg:h-[150px] outline-none focus:border-purple-500 focus:pl-8 transition-all duration-100 lg:text-2xl font-mono text-base px-2 py-1 caret-gray-200 mb-3 "
+                        placeholder="Work together!"
                         name="message"
                         id=""
                     ></textarea>
-                    <button className="border-2 border-white rounded-lg lg:py-2 text-white bg-purple-500 hover:bg-purple-600 hover:text-gray-400 transition-all delay-100 hover:scale-105">
+                    <button className=" rounded-lg lg:py-2 text-white bg-purple-500 hover:bg-purple-600 hover:text-gray-400 transition-all delay-100 hover:scale-105">
                         Send Message
                     </button>
                 </form>
