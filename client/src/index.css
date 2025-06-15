@@ -80,5 +80,38 @@ input[type="file"]::file-selector-button:hover {
 }
 
 nav div p {
-    
+    position: relative;
+    display: inline-block;
+    font-weight: 500;
+    z-index: 1;
+
 }
+nav div span {
+    position:absolute;
+    top:0;
+    left: 0;
+    width: 170px;
+    height: 100%;
+    background: linear-gradient(45deg, #4f1919, #ff3333);
+    border-radius: 8px;
+    transition: .5s;
+}
+
+nav div p:nth-child(3):hover~span {
+    left: 170px;
+    width: 140px;
+
+}
+nav div p:nth-child(4):hover~span {
+    left: 310px;
+    width: 125px;
+}
+nav div p:nth-child(5):hover~span {
+    left: 435px;
+    width: 100px;
+}
+#login-btn:hover{
+    background: linear-gradient(45deg, #4f1919, #ff3333);
+    transition: .8z;
+}
+

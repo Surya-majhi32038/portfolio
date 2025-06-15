@@ -60,7 +60,7 @@ function CreateProject() {
         <div className='lg:w-[30%] w-[90%] lg:mt-0 mt-20 h-fit flex flex-col'>
                 <h1 className='lg:text-4xl flex justify-center mx-auto text-3xl text-gray-300 mb-3'>Create Project</h1>
                 {/* lg:p-4 flex flex-col lg:w-[30%] w-[90vw] lg:gap-2 */}
-            <form onSubmit={addProject} className='flex p-3 flex-col lg:mx-3  backdrop-blur-3xl rounded-lg lg:gap-3'>
+            <form onSubmit={addProject} className='flex lg:p-3 p-6 flex-col lg:mx-3  backdrop-blur-3xl rounded-lg lg:gap-3'>
                 <div className='flex gap-1 flex-col mb-4 lg:mb-0'>
 
                     <label htmlFor="" className='lg:text-xl gradient-text'>Project Name</label>

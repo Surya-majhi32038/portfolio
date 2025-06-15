@@ -39,17 +39,17 @@ function AdminLogin() {
     })
     
   return (
-    <form onSubmit={onSubmitHandle} className='w-screen flex-col h-screen flex justify-center items-center'>
-        <div className='flex backdrop-blur-xl lg:p-5 rounded-md flex-col border-gray-500 border-2 lg:gap-4 lg:w-96'>
+    <form onSubmit={onSubmitHandle} className='lg:w-screen flex-col h-screen flex justify-center items-center'>
+        <div className='flex backdrop-blur-xl p-5 rounded-md flex-col border-gray-500 border-2 gap-4 lg:w-96'>
             <span className='lg:text-5xl mx-auto text-3xl mb-4 font-bold gradient-text lg:mb-10'>Login</span>
             {/* email */}
-            <input type="email" required value={email} onChange={(e)=> setEmail(e.target.value)} className='bg-transparent border-2   px-3 py-2  rounded-lg text-gray-200 outline-none focus:border-purple-500 focus:pl-6 transition-all duration-100 lg:text-lg text-sm font-mono mb-1  lg:mb-3' placeholder='example@gmail.com' name="email" id="email" />
+            <input type="email" required value={email} onChange={(e)=> setEmail(e.target.value)} className='bg-transparent border-2   px-3 py-2  rounded-lg text-gray-200 outline-none focus:border-purple-500 focus:pl-6 transition-all duration-100  text-lg font-mono mb-1  lg:mb-3' placeholder='example@gmail.com' name="email" id="email" />
 
             {/* password */}
-            <input type="password" required value={pass} onChange={(e)=> setPass(e.target.value)} className='bg-transparent border-2   px-3 py-2  rounded-lg text-gray-200 outline-none focus:border-purple-500 focus:pl-6 transition-all duration-100 lg:text-lg text-sm font-mono mb-1  lg:mb-3'placeholder='password1234' name="password" id="pass" />
+            <input type="password" required value={pass} onChange={(e)=> setPass(e.target.value)} className='bg-transparent border-2   px-3 py-2  rounded-lg text-gray-200 outline-none focus:border-purple-500 focus:pl-6 transition-all duration-100 text-lg  font-mono mb-1  lg:mb-3'placeholder='password1234' name="password" id="pass" />
 
             {/* submit */}
-            <button type='submit' className=" rounded-lg lg:py-2 text-white bg-purple-500 hover:bg-purple-600  transition-all w-[50%] mx-auto delay-100 hover:scale-105">Submit</button>
+            <button type='submit' className=" rounded-lg py-2 text-white bg-purple-500 hover:bg-purple-600  transition-all w-[50%] mx-auto delay-100 hover:scale-105">Submit</button>
         </div>
     </form>
   )

@@ -10,7 +10,7 @@ function AdminDashboard() {
     const dispatch = useDispatch();
     const toggleNav = useSelector((state) => state.nav.toggleNav)
     const page = useSelector((state) => state.page.page);
-    console.log("page", toggleNav);
+    // console.log("page", toggleNav);
   return (
     // flex lg:flex-col h-screen
     <div className='h-[100%] w-[100%]'>
