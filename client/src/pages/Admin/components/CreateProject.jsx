@@ -30,7 +30,7 @@ function CreateProject() {
 
         try {
             console.log()
-            const response = await axios.post('http://localhost:3000/api/addProject', {
+            const response = await axios.post(`${import.meta.env.VITE_PORT}/api/addProject`, {
                 title: name,
                 description: description,
                 githubUrl: githubLink,
@@ -93,7 +93,13 @@ function CreateProject() {
                     <label htmlFor="" className='lg:text-xl gradient-text'>Live link</label>
                     <input  required value={liveLink} onChange={(e)=> setLiveLink(e.target.value)} placeholder='http://www.exapmple.live.com' className=' bg-transparent border-2   px-3 py-1  rounded-full text-gray-200 outline-none focus:border-purple-500 focus:pl-6 transition-all duration-100 lg:text-base text-sm font-mono mb-4  lg:mb-3' type="url" />
                 </div>
-                <button type='submit' className=" rounded-full lg:py-2 py-1 text-white bg-purple-500 hover:bg-purple-600 hover:text-gray-400 transition-all text-sm w-[50%] mx-auto delay-100 hover:scale-105">Add Project</button>
+                {/* <button type='submit' className=" rounded-full lg:py-2 py-1 text-white bg-purple-500 hover:bg-purple-600 hover:text-gray-400 transition-all text-sm w-[50%] mx-auto delay-100 hover:scale-105">Add Project</button> */}
+                 {/* button */}
+          <button type="submit" className="btn mx-auto lg:mt-0 mt-4">
+            <span id="front" className="spn">Submit</span>
+            <span id="mid" className="spn"></span>
+            <span id="back" className="spn">Here</span>
+          </button>
             </form>
         </div>
     )

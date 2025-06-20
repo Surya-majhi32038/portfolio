@@ -17,7 +17,7 @@ function CreateSkill() {
             }
             try {
                 // console.log()
-                const response = await axios.post('http://localhost:3000/api/addSkill', {
+                const response = await axios.post(`${import.meta.env.VITE_PORT}/api/addSkill`, {
                     skill: skillName,
                     level: level
                 });
@@ -49,7 +49,12 @@ function CreateSkill() {
                 </div>
 
                 
-                <button type='submit' className=" rounded-full lg:py-2 text-white bg-purple-500 hover:bg-purple-600 hover:text-gray-400 transition-all w-[50%] mx-auto delay-100 hover:scale-105">Add Project</button>
+                 {/* button */}
+          <button type="submit" className="btn mx-auto lg:mt-0 mt-4">
+            <span id="front" className="spn">Submit</span>
+            <span id="mid" className="spn"></span>
+            <span id="back" className="spn">Here</span>
+          </button>
             </form>
         </div>
   )

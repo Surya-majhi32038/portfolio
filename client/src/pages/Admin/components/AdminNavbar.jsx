@@ -12,7 +12,7 @@ function AdminNavbar() {
   const page = useSelector((state) => state.page.page);
   const dispatch = useDispatch();
   const loggOutUser = async () => {
-    const res = await axios.get("http://localhost:3000/api/logout", {
+    const res = await axios.get(`${import.meta.env.VITE_PORT}/api/logout`, {
       withCredentials: true,
     });
     if (res.data.success) dispatch(loggedOut());

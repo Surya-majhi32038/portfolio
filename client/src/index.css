@@ -1,14 +1,11 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Gabarito&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Gabarito&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-*{
-    scroll-behavior: smooth;
-    font-family: "Gabarito", sans-serif;
-    
+* {
+  scroll-behavior: smooth;
+  font-family: "Gabarito", sans-serif;
 }
 body {
   background-image: url("./assets/bg.png");
@@ -17,45 +14,49 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
+/* Add to your global CSS */
+[data-aos="flip-left"].aos-animate {
+  transform: rotateY(180deg) scale(1.1);
+}
 
 .portfolio-card {
-    background-color: rgba(128, 128, 128, 0.173);
+  background-color: rgba(128, 128, 128, 0.173);
 }
 
 .gradient-text {
-    background: linear-gradient(white,rgba(134,78,173));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+  background: linear-gradient(white, rgba(134, 78, 173));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .prograss-bar::-webkit-progress-bar {
-    border-radius: 15px;
-    border: 1px solid gray;
-    background-color: transparent;
+  border-radius: 15px;
+  border: 1px solid gray;
+  background-color: transparent;
 }
 .prograss-bar::-webkit-progress-value {
-    border-radius: 15px;
-    background: linear-gradient(to right, violet,yellow);
+  border-radius: 15px;
+  background: linear-gradient(to right, violet, yellow);
 }
 @media (max-width: 499px) {
-    .prograss-bar {
-        height: 12px; /* Smaller height for small screens */
-    }
+  .prograss-bar {
+    height: 12px; /* Smaller height for small screens */
+  }
 }
 
 .scroll-bar::-webkit-scrollbar {
-    width: 5px;
-    background-color: transparent;
+  width: 5px;
+  background-color: transparent;
 }
 
 .scroll-bar::-webkit-scrollbar-thumb {
-    border-radius: 20px;
-    background-color: rgba(134,78,173);
+  border-radius: 20px;
+  background-color: rgba(134, 78, 173);
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 input[type="file"]::file-selector-button {
   border: 2px solid #6c5ce7;
@@ -65,12 +66,8 @@ input[type="file"]::file-selector-button {
   transition: 1s;
 }
 input[type="file"] {
-    
-    font-size: small;
-    color: #f0f0f0;
-    
-   
-  
+  font-size: small;
+  color: #f0f0f0;
 }
 
 input[type="file"]::file-selector-button:hover {
@@ -80,38 +77,249 @@ input[type="file"]::file-selector-button:hover {
 }
 
 nav div p {
-    position: relative;
-    display: inline-block;
-    font-weight: 500;
-    z-index: 1;
-
+  position: relative;
+  display: inline-block;
+  font-weight: 500;
+  z-index: 1;
 }
 nav div span {
-    position:absolute;
-    top:0;
-    left: 0;
-    width: 170px;
-    height: 100%;
-    background: linear-gradient(45deg, #4f1919, #ff3333);
-    border-radius: 8px;
-    transition: .5s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 170px;
+  height: 100%;
+  background: linear-gradient(45deg, #4f1919, #ff3333);
+  border-radius: 8px;
+  transition: 0.5s;
 }
 
-nav div p:nth-child(3):hover~span {
-    left: 170px;
-    width: 140px;
+nav div p:nth-child(3):hover ~ span {
+  left: 170px;
+  width: 140px;
+}
+nav div p:nth-child(4):hover ~ span {
+  left: 310px;
+  width: 125px;
+}
+nav div p:nth-child(5):hover ~ span {
+  left: 435px;
+  width: 100px;
+}
+#login-btn:hover {
+  background: linear-gradient(45deg, #4f1919, #ff3333);
+  transition: 0.8z;
+}
+.wrapper {
+  display: flex;
+  gap: 10px;
+  margin-top:125px
+}
+/* .wrapper .button {
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease-out;
+} */
+
+.wrapper .button {
+  display: flex; 
+  align-items: center;
+  justify-content: flex-start; 
+  height: 50px;
+  width: 50px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease-out;
+  /* white-space: nowrap; */
+  position: relative;
+  z-index: 1;
+}
+.wrapper .button .icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+   height: 50px;
+  width: 50px;
+   flex-shrink: 0; /*important: prevents shrinking when parent grows  */
+  border-radius: 40px;
+}
+.wrapper .button:hover {
+  width: 150px;
+}
+@media (max-width: 499px) {
+    .wrapper {
+        margin-top: 0px;
+    }
+    .wrapper .button {
+        /* justify-items: center; */
+        height: 40px;
+        width: 40px;
+        display: grid;
+    }
+   
+    .wrapper .button .icons {
+        height: 40px;
+        width: 40px;
+    }
+    .wrapper .button:hover .icons{
+        height: 40px;
+        width: 40px;
+    }
+    .wrapper .button .icons .icon {
+        font-size: 10px;
+        /* line-height: 20px; */
+    }
+    .wrapper .button:hover {
+       height: 40px;
+        width: 40px;
+    }
+ 
+} 
+.wrapper .button:nth-child(1):hover .icons{
+    background: #333;
+}
+.wrapper .button:nth-child(2):hover .icons{
+    background: #0A66C2;
+}
+.wrapper .button:nth-child(3):hover .icons{
+    background: #E1306C;
+}
+.wrapper .button:nth-child(4):hover .icons{
+    background: #4267B2;
+}
+.wrapper .button:nth-child(5):hover .icons{
+    background: #000000;
+}
+.wrapper .button:nth-child(6):hover .icons{
+    background: #ff0000;
+}
+.wrapper .button:nth-child(1) span{
+    color: #333;
+}
+.wrapper .button:nth-child(2) span{
+    color: #0A66C2;
+}
+.wrapper .button:nth-child(3) span{
+    color: #E1306C;
+}
+.wrapper .button:nth-child(4) span{
+    color: #4267B2;
+}
+.wrapper .button:nth-child(5) span{
+    color: #333;
+}
+.wrapper .button:nth-child(6) span{
+    color: #000000;
+}
+.wrapper .button:hover .icons .icon{
+    color: #fff;
+}
+
+
+.wrapper .button .icons .icon {
+  font-size: 25px;
+  transition: all 0.3s ease-out;
+}
+
+.wrapper .button:hover span {
+  opacity: 1;
+  visibility: visible;
+}
+/* 
+facebook -> #4267B2
+twitter -> #1DA1F2
+INSTAGRAM -> #E1306C
+GITHUB -> #333
+YOUTUBE -> #ff0000
+*/
+.wrapper .button span {
+  color: black;
+  font-size: 20px;
+  font-weight: 500;
+  margin-left: 10px;
+  opacity: 0;
+  visibility: hidden;
+  white-space: nowrap;
+   transition: all 0.3s ease-out;
+  /* transition: opacity 0.3s ease, visibility 0.3s ease; */
 
 }
-nav div p:nth-child(4):hover~span {
-    left: 310px;
-    width: 125px;
+
+/* button effect */
+.btn {
+  /* position: absolute; */
+  /* top: 50%;
+  left: 50%; */
+  /* transform: translate(-50%, -50%); */
+  width: 150px;
+  height: 50px;
+  text-align: center;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  cursor: pointer;
 }
-nav div p:nth-child(5):hover~span {
-    left: 435px;
-    width: 100px;
+
+.spn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  text-align: center;
+  line-height: 50px;
+  font-size: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  border-radius: 30px;
+  color: #fff;
+  transition: 1s;
 }
-#login-btn:hover{
-    background: linear-gradient(45deg, #4f1919, #ff3333);
-    transition: .8z;
+@media (max-width: 399px) {
+
+}
+#front {
+  transform: rotateX(0deg) translateZ(20px);
+}
+
+.btn:hover #front {
+  transform: rotateX(-180deg) translateZ(20px);
+}
+
+#back {
+  transform: rotateX(180deg) translateZ(20px);
+}
+
+.btn:hover #back {
+  transform: rotateX(0deg) translateZ(20px);
+}
+
+#mid {
+  background: linear-gradient(to left, #c31a5b, #7129bd);
+}
+
+#mid:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left, #ffdd1f, #c31a5b);
+  border-radius: 30px;
+  transform: translateZ(-1px);
+}
+
+.btn:hover #mid {
+  transform: rotateX(-180deg);
 }
 

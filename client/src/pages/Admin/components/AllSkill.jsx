@@ -14,7 +14,7 @@ function AllSkill() {
     }, []); 
     const fetchSkills = async () => {
         try {
-            const response = await axios.get("http://localhost:3000/api/getSkills");
+            const response = await axios.get(`${import.meta.env.VITE_PORT}/api/getSkills`);
             console.log("in fetchSkills", response);
             const data = response.data.skills || []; // Assuming the response structure is { skills: [...] }
             // console.log("Skills fetched:", response);
@@ -28,7 +28,7 @@ function AllSkill() {
         try {
             //   fetchSkills();
             // console.log("in handleDelete", skillId);
-            const res = await axios.delete(`http://localhost:3000/api/removeSkill/${skillId}`);
+            const res = await axios.delete(`${import.meta.env.VITE_PORT}/api/removeSkill/${skillId}`);
             const data = res.data; // Assuming the response structure is { message: "Skill deleted successfully" }
             alert(data.message); // Show success message
             fetchSkills(); // Refresh the skills list after deletion
@@ -36,7 +36,7 @@ function AllSkill() {
             console.error("Error deleting skill:", error);
         }
     }
-    console.log("Skills in AllSkill component:", skills);
+    // console.log("Skills in AllSkill component:", skills);
     return (
         <div className="h-auto w-[90%] lg:mt-0 mt-20 lg:w-[50%] lg:h-auto flex flex-col gap-10 scroll-auto px-1 lg:px-1">
             <h3 className="gradient-text w-fit mx-auto lg:mb-10 text-3xl lg:text-6xl font-bold">

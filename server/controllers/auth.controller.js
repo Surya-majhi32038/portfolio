@@ -57,12 +57,12 @@ exports.login = async (req, res) => {
          }
 
         // Generate a JWT token
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '30s' });
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '2h' });
         // Set the token in a cookie    
         res.cookie('token', token, {
             path: '/',
             httpOnly: true,
-            expiresIn: new Date(Date.now() + 30 * 1000), // 30 seconds
+            expiresIn: new Date(Date.now() + (60 * 1000 * 60 * 2) ), // 2 h
             sameSite: 'lax',
         });
         return res.status(200).json({ success : true, message: 'Login successful', token });

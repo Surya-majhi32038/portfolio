@@ -11,12 +11,12 @@ function AllProject() {
     // get all skills from the database
     useEffect(() => {
         if (projects.length === 0) {
-            fetchSkills();
+            fetchProjects();
         }
     }, []);
-    const fetchSkills = async () => {
+    const fetchProjects = async () => {
         try {
-            const response = await axios.get("http://localhost:3000/api/getProjects");
+            const response = await axios.get(`${import.meta.env.VITE_PORT}/api/getProjects`);
             // console.log("in fetchSkills", response);
             const data = response.data.projects || []; // Assuming the response structure is { skills: [...] }
             // console.log("Skills fetched:", response);
@@ -31,7 +31,7 @@ function AllProject() {
             // fetchSkills();
             // console.log("in handleDelete", skillId);
             const res = await axios.delete(
-                `http://localhost:3000/api/removeProject/${projectId}`
+                `${import.meta.env.VITE_PORT}/api/removeProject/${projectId}`
             );
             const data = res.data; // Assuming the response structure is { message: "Skill deleted successfully" }
             alert(data.message); // Show success message
@@ -49,7 +49,8 @@ function AllProject() {
              { projects.length == 0 && <h3 className="text-center text-gray-400 text-xl lg:text-2xl font-bold">
                         No Projects Found
             </h3>}
-            <div className="grid lg:grid-cols-3 grid-cols-1 gap-5 h-auto w-full overflow-y-scroll scroll-bar px-1 lg:px-1">
+            <div className="lg:grid lg:grid-cols-5 scroll-bar
+              grid-cols-1 gap-5 lg:h-[65vh] h-auto w-full lg:mx-auto overflow-y-scroll scroll-bar px-1 lg:px-1">
             {
                     projects.map((project) => (
                        <Project key={project._id} project={project} handleDelete={handleDelete}/>

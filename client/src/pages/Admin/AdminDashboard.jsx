@@ -19,7 +19,7 @@ function AdminDashboard() {
         className={`lg:hidden  fixed cursor-pointer z-10 text-gray-300 size-6 top-5 right-5 ${toggleNav? "hidden z-0" : "block "}`}
         onClick={() => dispatch(toggle())}
         /> 
-        <div className={`lg:h-[90vh] flex ${page === "AllProject" ? " items-start" : " items-center  justify-center"}   `}>
+        <div className={`lg:h-[90vh] flex items-center  justify-center   `}>
             {
                 (
                     ()=> {
