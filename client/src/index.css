@@ -82,17 +82,26 @@ nav div p {
   font-weight: 500;
   z-index: 1;
 }
-nav div span {
+.nav-color{
+    background: linear-gradient(to left, #c31a5b, #7129bd);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+nav div span { 
   position: absolute;
   top: 0;
   left: 0;
   width: 170px;
   height: 100%;
-  background: linear-gradient(45deg, #4f1919, #ff3333);
+  background: linear-gradient(to left, #c31a5b, #7129bd);
   border-radius: 8px;
   transition: 0.5s;
 }
-
+nav div p:nth-child(2):hover ~ span {
+  left: 0;
+  width: 170px;
+}
 nav div p:nth-child(3):hover ~ span {
   left: 170px;
   width: 140px;
@@ -104,6 +113,7 @@ nav div p:nth-child(4):hover ~ span {
 nav div p:nth-child(5):hover ~ span {
   left: 435px;
   width: 100px;
+
 }
 #login-btn:hover {
   background: linear-gradient(45deg, #4f1919, #ff3333);
@@ -265,6 +275,8 @@ YOUTUBE -> #ff0000
   transform-style: preserve-3d;
   transform-origin: center center;
   cursor: pointer;
+  /* box-shadow: 0 0 15px rgba(199, 21, 133, 0.6); /* subtle neon glow */
+    /* border-radius: 30px;  */
 }
 
 .spn {
@@ -276,7 +288,7 @@ YOUTUBE -> #ff0000
   display: block;
   text-align: center;
   line-height: 50px;
-  font-size: 20px;
+  font-size: 24px;
   background: rgba(255, 255, 255, 0.05);
   transform-style: preserve-3d;
   backface-visibility: hidden;
@@ -304,7 +316,7 @@ YOUTUBE -> #ff0000
 }
 
 #mid {
-  background: linear-gradient(to left, #c31a5b, #7129bd);
+  background: linear-gradient(to left, #6a00f4, #892CDC);
 }
 
 #mid:before {
@@ -314,9 +326,16 @@ YOUTUBE -> #ff0000
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to left, #ffdd1f, #c31a5b);
+  background: linear-gradient(to left,  #A4508B, #5F0A87);
   border-radius: 30px;
   transform: translateZ(-1px);
+
+  /* 
+  1. #c31a5b, #7129bd 
+     #ffdd1f, #c31a5b
+
+     2. 
+  */
 }
 
 .btn:hover #mid {

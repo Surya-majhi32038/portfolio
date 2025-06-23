@@ -30,7 +30,6 @@ function AllSkill() {
             // console.log("in handleDelete", skillId);
             const res = await axios.delete(`${import.meta.env.VITE_PORT}/api/removeSkill/${skillId}`);
             const data = res.data; // Assuming the response structure is { message: "Skill deleted successfully" }
-            alert(data.message); // Show success message
             fetchSkills(); // Refresh the skills list after deletion
         } catch (error) {
             console.error("Error deleting skill:", error);

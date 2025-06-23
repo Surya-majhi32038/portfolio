@@ -90,7 +90,7 @@ function ContactMe() {
             name="mail"
           />
           <textarea
-            className="bg-transparent border-2 lg:px-2 lg:mb-5 lg:py-3 rounded-lg placeholder-[#7e8286]  lg:max-h-[200px] outline-none focus:border-purple-500 text-gray-200 resize-none focus:pl-5 lg:focus:pl-6 transition-all duration-100 lg:text-xl font-mono text-base px-2 py-1 caret-gray-200 mb-3 "
+            className="bg-transparent border-2 lg:px-2 lg:mb-5 lg:py-3 rounded-lg placeholder-[#7e8286]  lg:h-[250px] outline-none focus:border-purple-500 text-gray-200 resize-none focus:pl-5 lg:focus:pl-6 transition-all duration-100 lg:text-xl font-mono text-base px-2 py-1 caret-gray-200 mb-3 "
             placeholder="Work with together!"
             name="message"
             id=""

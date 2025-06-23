@@ -96,7 +96,7 @@ function Project({ project, handleDelete }) {
     return (
         <div className="w-fit mx-auto lg:mb-0 mb-12">
             {edit ? (
-                <div className="flex flex-col h-[50vh] select-none w-[300px] overflow-hidden border-opacity-60 hover:shadow-lg transition-all delay-100 duration-300 rounded-xl p-2 gap-1 border-2 border-gray-400 backdrop-blur-xl">
+                <div className="flex flex-col h-[350px] select-none w-[250px] overflow-hidden border-opacity-60 hover:shadow-lg transition-all delay-100 duration-300  rounded-xl p-2 gap-1 border-2 border-gray-400 backdrop-blur-xl">
                     <div className="flex flex-col">
                         {/* <p className=" gradient-text lg:text-base">Name</p> */}
                         <input

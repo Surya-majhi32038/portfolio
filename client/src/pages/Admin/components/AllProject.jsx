@@ -34,9 +34,7 @@ function AllProject() {
                 `${import.meta.env.VITE_PORT}/api/removeProject/${projectId}`
             );
             const data = res.data; // Assuming the response structure is { message: "Skill deleted successfully" }
-            alert(data.message); // Show success message
-            console.log("in handle delete",projectId);
-            fetchSkills(); // Refresh the skills list after deletion
+            fetchProjects(); // Refresh the skills list after deletion
         } catch (error) {
             console.error("Error deleting skill:", error);
         }

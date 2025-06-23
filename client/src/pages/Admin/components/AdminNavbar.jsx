@@ -24,7 +24,7 @@ function AdminNavbar() {
         toggleNav ? "translate-x-0" : "-translate-x-full"
       }`}
     >
-      <div className="flex w-full lg:h-full lg:items-center lg:gap-5 gap-7 pl-10 lg:mt-0 mt-10 lg:pl-0 lg:w-auto flex-col lg:flex-row relative">
+      <div className="flex w-full  lg:h-full lg:items-center lg:gap-5 gap-7 pl-10 lg:mt-0 mt-10 lg:pl-0 lg:w-auto flex-col lg:flex-row relative">
         <AiOutlineClose
           onClick={() => dispatch(toggle())}
           className="lg:hidden absolute top-5 right-4 size-6 text-xl cursor-pointer"
@@ -34,12 +34,12 @@ function AdminNavbar() {
             dispatch(setPage("CreateProject"));
             dispatch(toggle());
           }}
-          className="cursor-pointer lg:pl-2 whitespace-nowrap  hover:bg-opacity-60   hover:rounded-md transition-all delay-100"
+          className={`cursor-pointer ${page === "CreateProject" ? "text-gray-200" : "nav-color"} font-bold lg:pl-2 whitespace-nowrap  hover:bg-opacity-60   hover:rounded-md transition-all delay-100`}
         >
           Create Project
         </p>
         <p
-          className="cursor-pointer  whitespace-nowrap hover:bg-opacity-60  transition-all delay-100"
+          className={`cursor-pointer  whitespace-nowrap hover:bg-opacity-60  transition-all delay-100 ${page === "CreateSkill" ? "text-gray-200" : "nav-color"} font-bold`}
           onClick={() => {
             dispatch(setPage("CreateSkill"));
             dispatch(toggle());
@@ -48,7 +48,7 @@ function AdminNavbar() {
           Create Skill
         </p>
         <p
-          className="cursor-pointer whitespace-nowrap hover:bg-opacity-60   transition-all delay-100"
+          className={`cursor-pointer whitespace-nowrap hover:bg-opacity-60   transition-all delay-100 ${page === "AllProject" ? "text-gray-200" : "nav-color"} font-bold`}
           onClick={() => {
             dispatch(setPage("AllProject"));
             dispatch(toggle());
@@ -57,7 +57,7 @@ function AdminNavbar() {
           All Project
         </p>
         <p
-          className="cursor-pointer  hover:bg-opacity-60  hover:rounded-md transition-all delay-100"
+          className={`cursor-pointer  font-bold hover:bg-opacity-60  hover:rounded-md transition-all delay-100 ${page === "AllSkill" ? "text-gray-200" : "nav-color"} font-bold `}
           onClick={() => {
             dispatch(setPage("AllSkill"));
             dispatch(toggle());
