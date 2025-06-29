@@ -6,6 +6,7 @@ import CreateProject from './components/CreateProject.jsx'
 import AllProject from './components/AllProject.jsx'
 import CreateSkill from './components/CreateSkill.jsx'
 import AllSkill from './components/AllSkill.jsx'
+import PersonalDetails from './components/PersonalDetails.jsx'
 function AdminDashboard() {
     const dispatch = useDispatch();
     const toggleNav = useSelector((state) => state.nav.toggleNav)
@@ -16,7 +17,7 @@ function AdminDashboard() {
     <div className='h-[100%] w-[100%]'>
       <AdminNavbar/>
         <GiHamburgerMenu
-        className={`lg:hidden  fixed cursor-pointer z-10 text-gray-300 size-6 top-5 right-5 ${toggleNav? "hidden z-0" : "block "}`}
+        className={`lg:hidden transition-all fixed cursor-pointer z-10 text-gray-300 delay-700 size-6 top-10 right-5 ${toggleNav? "hidden  z-0" : "block "}`}
         onClick={() => dispatch(toggle())}
         /> 
         <div className={`lg:h-[90vh] flex items-center  justify-center   `}>
@@ -32,6 +33,8 @@ function AdminDashboard() {
                             return <CreateSkill/> 
                             case "AllSkill" :
                             return <AllSkill/>
+                            case "PersonalDetails" :
+                            return <PersonalDetails/>
                             default :
                             return <CreateProject/> 
                         }

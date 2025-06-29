@@ -24,7 +24,7 @@ exports.signup = async (req, res) => {
         });
         // Save the user to the database
 
-        return res.status(201).json({ success : true, message: 'User created successfully' });
+        return res.status(201).json({ success : true, message: 'User created successfully',id:newUser._id.toString() });
 
     } catch (error) {
         console.error('Error during signup:', error);
@@ -38,11 +38,12 @@ exports.login = async (req, res) => {
 
         // Find the user by email
         const user = await User.findOne({ email });
+        // console.log("in side login function ",user,"user id ",user?._id.toString());
         if (!user) {
             return res.status(400).json({ message: ' sign up ' });
         }
         // Compare the password with the hashed password 
-        console.log("plain password -> ",password," hash password -> ",user.password)   
+        // console.log("plain password -> ",password," hash password -> ",user.password)   
         const isPasswordValid = await bcrypt.compare(password, user.password);
 
         if (!isPasswordValid) {
@@ -57,15 +58,15 @@ exports.login = async (req, res) => {
          }
 
         // Generate a JWT token
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '2h' });
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN ||'20m' });
         // Set the token in a cookie    
         res.cookie('token', token, {
             path: '/',
             httpOnly: true,
-            expiresIn: new Date(Date.now() + (60 * 1000 * 60 * 2) ), // 2 h
+            expiresIn: new Date(Date.now() + (60 * 1000 * 20) ), // 20 m
             sameSite: 'lax',
         });
-        return res.status(200).json({ success : true, message: 'Login successful', token });
+        return res.status(200).json({ success : true, message: 'Login successful', id:user._id.toString() });
     } catch (error) {
         console.error('Error during login:', error);
         return res.status(500).json({ success : false, message: 'Internal server error' });
@@ -76,6 +77,7 @@ exports.login = async (req, res) => {
 exports.logout = async(req,res) => {
     try {
         res.clearCookie("token");
+       
         res.status(200).json({success:true,message: "Logged out sccessfully "})
     } catch (e) {
         return res.status(500).json({success:false,message: e.message});

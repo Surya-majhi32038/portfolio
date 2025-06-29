@@ -1,43 +1,36 @@
 const jwt = require('jsonwebtoken');
 
-exports.refreshToken = (req, res) => {
+exports.refreshToken = (req, res, next) => {
     try {
-        const cookeies = req.headers.cookie;
-        const preToken = cookeies.split('=')[1]; // Assuming the cookie is named 'token'
+        const cookies = req.headers.cookie;
+        const preToken = cookies?.split('; ').find(row => row.startsWith('token='))?.split('=')[1];
 
-        // Check if the token exists
-        if(!preToken) {
+        if (!preToken) {
             return res.status(401).json({ success: false, message: 'No token provided' });
         }
-        // Verify the token
-         jwt.verify(preToken,process.env.JWT_SECRET,(error,user) => {
-            if(error) return res.status(403).json({success:false,message:error.message});
 
-            // clear the previous token
+        jwt.verify(preToken, process.env.JWT_SECRET, (error, user) => {
+            if (error) return res.status(403).json({ success: false, message: error.message });
+
             res.clearCookie("token");
 
-            // creating a new token
             const newToken = jwt.sign(
-                {
-                    id:user.id
-                },
+                { id: user.id },
                 process.env.JWT_SECRET,
-                {
-                    expiresIn:"30s"
-                }
-            )
-         });
+                { expiresIn: process.env.JWT_EXPIRES_IN || '20m' }
+            );
 
-         res.cookeie("token",newToken,{
-            path:"/",
-            httpOnly: true,
-            expiresIn : new Date(Date.now() + 100 * 30),
-            sameSite: "lax"
-         })
+            res.cookie("token", newToken, {
+                path: "/",
+                httpOnly: true,
+                expires: new Date(Date.now() + 1000 * 60 * 20), // 20 minutes
+                sameSite: "lax"
+            });
 
-         req.id = user.id;
-         next();
+            req.id = user.id;
+            next();
+        });
     } catch (error) {
-        return res.status(401).json({ success: false, message: 'Error occurred during token refresh:'+error.message });
+        return res.status(401).json({ success: false, message: 'Error occurred during token refresh: ' + error.message });
     }
-}
+};

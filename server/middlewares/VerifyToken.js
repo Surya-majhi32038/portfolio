@@ -19,7 +19,7 @@ const verifyToken = async (req, res, next) => {
 
             // creating a new token 
             const newToken = jwt.sign({id: user.id}, process.env.JWT_SECRET, {
-                expiresIn: "30s"
+                expiresIn: "20m"
             })
         });
         

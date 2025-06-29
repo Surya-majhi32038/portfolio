@@ -8,7 +8,11 @@ const SkillSchema = new mongoose.Schema({
     level: {
         type: Number,
         required: true
-    }
+    },
+    owner: {
+       type: String,
+       required: true // Assuming this is the user ID of the skill owner
+    },
 }, {
     timestamps: true // Automatically manage createdAt and updatedAt fields
 });

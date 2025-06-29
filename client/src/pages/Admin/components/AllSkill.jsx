@@ -6,15 +6,21 @@ import { MdDelete } from "react-icons/md";
 function AllSkill() {
     const dispatch = useDispatch(); // Initialize the Redux dispatch function
     const skills = useSelector((state) => state.user.skills); // Access the skills from the Redux store
+    const userId = useSelector((state) => state.userId.userId); // Get the user ID from the Redux store
     // get all skills from the database
     useEffect(() => {
        if (skills.length === 0) {
         fetchSkills();
     }
+    fetchSkills();
     }, []); 
     const fetchSkills = async () => {
         try {
-            const response = await axios.get(`${import.meta.env.VITE_PORT}/api/getSkills`);
+            console.log("userId in fetchSkills", userId);
+           // const savedState = JSON.parse(localStorage.getItem("userId")); // Get the user ID from localStorage or Redux store
+            const response = await axios.get(`${import.meta.env.VITE_PORT}/api/getSkills`,{
+                params: { id: userId }
+            });
             console.log("in fetchSkills", response);
             const data = response.data.skills || []; // Assuming the response structure is { skills: [...] }
             // console.log("Skills fetched:", response);
@@ -38,7 +44,7 @@ function AllSkill() {
     // console.log("Skills in AllSkill component:", skills);
     return (
         <div className="h-auto w-[90%] lg:mt-0 mt-20 lg:w-[50%] lg:h-auto flex flex-col gap-10 scroll-auto px-1 lg:px-1">
-            <h3 className="gradient-text w-fit mx-auto lg:mb-10 text-3xl lg:text-6xl font-bold">
+            <h3 className="gradient-text w-fit mx-auto lg:mb-10 text-3xl lg:text-5xl font-bold">
                 My Skill
                 </h3>
             {

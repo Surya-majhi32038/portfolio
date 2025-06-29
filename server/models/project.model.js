@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const ProjectSchema = new mongoose.Schema({
-    name: {
+  name: {
         type: String,
         required: true,
     },
@@ -29,6 +29,11 @@ const ProjectSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+   owner: {
+       type: String,
+       required: true // Assuming this is the user ID of the skill owner
+    },
+
 }, {
     timestamps: true // Automatically manage createdAt and updatedAt fields
 });

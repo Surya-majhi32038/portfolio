@@ -18,14 +18,14 @@ exports.checkUser = (req, res, next) => {
         const newToken = jwt.sign(
             { id: user.id },
             process.env.JWT_SECRET,
-            { expiresIn: "30s" }
+            { expiresIn: process.env.JWT_EXPIRES_IN || '20m' } // default to 20m if not set
         );
 
         // setting the new token in the cookie
         res.cookie("token", newToken, {
             path: "/",
             httpOnly: true,
-            expires: new Date(Date.now() + 1000 * 30), // 30 seconds
+            expires: new Date(Date.now() +( 1000 * 60 * 20)), // 30 seconds
             sameSite: "lax"
         });
 

@@ -1,8 +1,10 @@
 const Skill = require("../models/skill.model.js");
 
 exports.getSkills = async (req, res) => {
+    const  id  = req.query.id;
+     console.log("id :", id);
   try {
-    const skills = await Skill.find();
+    const skills = await Skill.find({ owner: id });
     // console.log("skills :", skills);
     if (!skills || skills.length === 0) {
       return res
@@ -16,7 +18,7 @@ exports.getSkills = async (req, res) => {
 };
 
 exports.addSkill = async (req, res) => {
-  const { skill, level } = req.body;
+  const { skill, level,id } = req.body;
   // console.log("req.body :", typeof(parseInt(level)));
   if (!skill || !level) {
     return res
@@ -25,7 +27,7 @@ exports.addSkill = async (req, res) => {
   }
 
   try {
-    const newSkill = await Skill.create({ skill, level: parseInt(level) });
+    const newSkill = await Skill.create({ skill, level: parseInt(level), owner: id });
     res
       .status(201)
       .json({

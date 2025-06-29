@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-
+import { useSelector } from 'react-redux';
 function CreateSkill() {
      const [skillName, setSkillName] = useState('');
      const [level,setLevel] = useState('');
+     const userId = useSelector((state) => state.userId.userId);
         
         const addSkill = async (e) => {
             e.preventDefault(); // prevent the re-loading of the page
@@ -19,7 +20,8 @@ function CreateSkill() {
                 // console.log()
                 const response = await axios.post(`${import.meta.env.VITE_PORT}/api/addSkill`, {
                     skill: skillName,
-                    level: level
+                    level: level,
+                    id: userId
                 });
                 if(response) {
                     alert('Skill added successfully');
@@ -33,8 +35,8 @@ function CreateSkill() {
             }
         }
   return (
-    <div className='lg:w-[30%] h-fit lg:mt-0 mt-20 w-[85%] lg:h-fit flex flex-col'>
-                <h1 className='lg:text-4xl flex justify-center mx-auto text-3xl text-gray-300 mb-3'>Create Project</h1>
+    <div className='lg:w-[30%] h-fit lg:mt-0 mt-20 w-[85%]  flex flex-col'>
+                <h1 className='lg:text-5xl lg:font-bold lg:top-4 flex gradient-text justify-center mx-auto text-3xl text-gray-300 mb-3'>Create Skill</h1>
                 {/* lg:p-4 flex flex-col lg:w-[30%] w-[90vw] lg:gap-2 */}
             <form onSubmit={addSkill} className='flex p-3 flex-col  lg:mx-3 backdrop-blur-3xl rounded-lg gap-3'>
                 <div className='flex gap-1 flex-col mb-4 lg:mb-0'>

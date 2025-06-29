@@ -2,8 +2,9 @@ const Project = require("../models/project.model.js");
 
 
 exports.getProjects = async (req, res) => {
+    const  id  = req.query.id;
   try {
-    const projects = await Project.find();
+    const projects = await Project.find({owner:id});
     if (!projects || projects.length === 0) {
       return res
         .status(200)
@@ -25,6 +26,7 @@ exports.addProject = async (req, res) => {
     secureUrl,
     publicId,
     deleteToken,
+    id
   } = req.body;
 
 //   console.log("req.body :", req.body);
@@ -44,6 +46,7 @@ exports.addProject = async (req, res) => {
       liveUrl,
       publicUrl : publicId,
       deletedUrl : deleteToken,
+      owner: id
     });
    return res
       .status(201)

@@ -1,6 +1,6 @@
 const express = require('express');
 const { signup, login, logout } = require('../controllers/auth.controller.js');
-const { getUser, authUser } = require('../controllers/user.controller.js');
+const { getUser, authUser,updatePersonalDetails } = require('../controllers/user.controller.js');
 const { verifyToken } = require('../middlewares/VerifyToken.js');
 const { refreshToken } = require('../middlewares/RefreshToken.js');
 const { checkUser } = require('../middlewares/checkUser.js');
@@ -18,6 +18,7 @@ router.get("/getUser",getUser);
 router.get("/authUser",verifyToken, authUser); // Assuming this is for admin user, you might want to change the controller function if needed
 router.get("/refresh",refreshToken,verifyToken,authUser); 
 router.get("/checkUser",checkUser); // This route checks if the user is logged in and returns user details
+router.post("/update-personal-details",updatePersonalDetails); // Update personal details
 
 // skill routes
 router.get('/getSkills', getSkills);

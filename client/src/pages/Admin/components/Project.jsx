@@ -169,8 +169,8 @@ function Project({ project, handleDelete }) {
 
                     {/* details section  */}
                     <div className="gap-2 p-2 lg:h-full flex flex-col">
-                        <h3 className=" text-2xl text-justify text-gray-200">{name}</h3>
-                        <p className="text-sm scroll-bar overflow-y-auto text-justify h-28 text-gray-400">
+                        <h3 className=" text-2xl  text-justify text-gray-200">{name}</h3>
+                        <p className="text-sm break-words scroll-bar overflow-y-scroll overflow-x-hidden h-28 text-gray-400">
                             {description}
                         </p>
                         <div className="flex items-center bottom-0 justify-between">
