@@ -49,6 +49,17 @@ const PersonalDetailsSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    userEmail: {
+        type: String,
+        required: true,
+        unique: true, // Ensure email is unique
+        match: /.+\@.+\..+/ // Basic email validation regex
+    },
+    userPhone: {
+        type: String,
+        required: true,
+        match: [/^[6-9]\d{9}$/, 'Please enter a valid 10-digit Indian phone number']
+    },
    owner: {
        type: String,
        required: true // Assuming this is the user ID of the skill owner

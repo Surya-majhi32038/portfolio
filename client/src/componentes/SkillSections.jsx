@@ -17,8 +17,15 @@ function SkillSections() {
         fetchSkills();
     }, []);
     const fetchSkills = async () => {
+        const userId = localStorage.getItem("userId");
+        if(!userId) {
+            console.log('Not found any user id in localStorage');
+            return;
+        }
         try {
-            const response = await axios.get(`${import.meta.env.VITE_PORT}/api/getSkills`);
+            const response = await axios.get(`${import.meta.env.VITE_PORT}/api/getSkills`,{
+                params: { id: userId }
+            });
             // console.log("in fetchSkills", response);
             const data = response.data.skills || []; // Assuming the response structure is { skills: [...] }
             // console.log("Skills fetched:", response);

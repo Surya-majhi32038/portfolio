@@ -22,8 +22,15 @@ function ProjectSection() {
         }
     }, []);
     const fetchProjects = async () => {
+        const userId = localStorage.getItem("userId");
+        if(!userId) {
+            console.log('No user id found in local storage');
+            return ;
+        }
         try {
-            const response = await axios.get(`${import.meta.env.VITE_PORT}/api/getProjects`);
+            const response = await axios.get(`${import.meta.env.VITE_PORT}/api/getProjects`,{
+                params: { id: userId }
+            });
             // console.log("in fetchSkills", response);
             const data = response.data.projects || []; // Assuming the response structure is { skills: [...] }
             // console.log("Skills fetched:", response);

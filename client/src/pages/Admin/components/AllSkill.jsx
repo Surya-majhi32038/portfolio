@@ -64,7 +64,7 @@ function AllSkill() {
                         <div className="flex lg:basis-1/3 items-center  gap-2">
                         <progress
                             max="100"
-                            value={skill.level * 20}
+                            value={skill.level * 10}
                             className=" prograss-bar lg:w-[20vw] h-5"
                         />
                             <MdDelete onClick={()=>{handleDelete(skill._id)}} className="text-white lg:text-2xl size-6 cursor-pointer hover:text-amber-500" />

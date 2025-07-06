@@ -25,6 +25,7 @@ function AllProject() {
             const data = response.data.projects || []; // Assuming the response structure is { skills: [...] }
             // console.log("Skills fetched:", response);
             dispatch(setProjects(data)); // Dispatch the skills to the Redux store
+            console.log(data);
         } catch (error) {
             console.error("Error fetching skills:", error);
         }

@@ -127,10 +127,10 @@ nav div p:nth-child(6):hover ~ span {
   width: 100px;
 
 }
-#login-btn:hover {
+/* #login-btn:hover {
   background: linear-gradient(45deg, #4f1919, #ff3333);
   transition: 0.8z;
-}
+} */
 .wrapper {
   display: flex;
   gap: 10px;
@@ -176,12 +176,12 @@ nav div p:nth-child(6):hover ~ span {
 .wrapper .button:hover {
   width: 150px;
 }
-@media (max-width: 499px) {
+ @media (max-width: 499px) {
     .wrapper {
         margin-top: 0px;
     }
     .wrapper .button {
-        /* justify-items: center; */
+       
         height: 40px;
         width: 40px;
         display: grid;
@@ -195,16 +195,13 @@ nav div p:nth-child(6):hover ~ span {
         height: 40px;
         width: 40px;
     }
-    .wrapper .button .icons .icon {
-        font-size: 10px;
-        /* line-height: 20px; */
-    }
+    
     .wrapper .button:hover {
        height: 40px;
         width: 40px;
     }
  
-} 
+}  
 .wrapper .button:nth-child(1):hover .icons{
     background: #333;
 }

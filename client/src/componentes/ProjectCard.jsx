@@ -12,7 +12,7 @@ function ProjectCard({project}) {
 
         {/* details section  */}
         <div className='lg:gap-3 gap-1 lg:p-4 p-2 flex flex-col'>
-            <h3 className='lg:text-4xl text-2xl text-justify text-gray-200'>{project.name}</h3>
+            <h3 className='lg:text-3xl text-2xl text-justify text-gray-200'>{project.name}</h3>
             <p className='lg:text-base line-clamp-none scroll-bar overflow-y-auto lg:h-40 h-40 text-gray-400'>{project.description}</p>
             <div className='flex items-center justify-between'>
                 <a href={project.githubUrl}>
