@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const port = 3000;
+const port =  3000;
 const router = require("./routes/route.js"); // Adjust the path as necessary
 require("dotenv").config();
 const { connectDB } = require("./connection.js"); // Adjust the path as necessary
