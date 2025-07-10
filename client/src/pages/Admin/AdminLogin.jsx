@@ -70,8 +70,8 @@ function AdminLogin() {
   useEffect(() => {
     // console.log("call every time")
     checkOut();
-    console.log("userId from useEffect :", userId);
-  });
+    // console.log("userId from useEffect :", userId);
+  },[]);
 
   return (
     
@@ -191,8 +191,8 @@ function AdminLogin() {
           {/* Registation #7494ec */}
           {/* toggle-panel toggle-left */}
           <div
-            className={`absolute w-1/2 h-full z-[2] text-white flex flex-col justify-center items-center duration-1000 transition-all  ph:w-full ph:h-[30%] ph:top-0   ${
-              isActive ? "lg:-left-1/2 delay-[.6s] ph:bottom-[60%]  ph:-top-[50%]" : "left-0 delay-[1.2s]" 
+            className={`absolute w-1/2 h-full z-[2] text-white flex flex-col justify-center items-center duration-1000 transition-all  ph:w-full ph:h-[30%]    ${
+              isActive ? "lg:-left-1/2 delay-[.6s] ph:bottom-[60%]  ph:-top-[50%]" : "left-0 delay-[1.2s] top-0" 
             }`}
           > 
             <h1 className="ph:text-2xl text-4xl ph:mb-3 mb-5 font-semibold ph:font-medium">Hello, Welcome!</h1>
