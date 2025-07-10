@@ -12,7 +12,7 @@ connectDB(); // Call the function to connect to the database
 
 // middlewares
 app.use(express.json()); // for parsing application/json
-app.use(cors({ origin: process.env.PORT, credentials: true })); // for enabling
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true })); // for enabling
 app.use(cookieParser()); // for parsing cookies
 
 //routes
