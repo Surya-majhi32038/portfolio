@@ -1,7 +1,7 @@
 import React from "react";
 import myImg1 from "../assets/myImg1.jpg";
 function HomeCard({ paragraph, img }) {
-    console.log(paragraph)
+  console.log("img", img, "myImg1", myImg1);
   const splitParagraph = (paragraph) => {
     const sentences = paragraph
       .split(".")
@@ -37,7 +37,7 @@ function HomeCard({ paragraph, img }) {
       </div>
       <div data-aos="fade-up-left">
         <img
-          src={img || myImg1 }
+          src={img ? img : myImg1}
           alt="profile picture "
           className="rounded-full lg:w-[450px] object-cover h-[200px] w-[200px] lg:h-[450px] mx-auto"
         />

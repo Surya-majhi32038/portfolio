@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 exports.checkUser = (req, res, next) => {
     try {
         const {token} = req.cookies;
+        
         if (!token) {
             return res.status(401).json({ success: false, message: 'Please Login First' });
         }
@@ -25,7 +26,7 @@ exports.checkUser = (req, res, next) => {
         res.cookie("token", newToken, {
             path: "/",
             httpOnly: true,
-            expires: new Date(Date.now() +( 1000 * 60 * 20)), // 30 seconds
+            maxAge: 2 * 60 * 60 * 1000, // 20 minutes in ms
             sameSite: "lax"
         });
 

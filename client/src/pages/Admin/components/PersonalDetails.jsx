@@ -20,13 +20,13 @@ function PersonalDetails() {
     const [userPhone, setUserPhone] = useState('');
 
     const userId = useSelector((state) => state.userId.userId);
-
     useEffect(() => {
         // first check if the user is alredy in or not 
-
+        
         fetchData();
-
+        
     }, [])
+    console.log('img',myImg, 'userId', imageLiveLink);
 
     let uploadImgs = null;
     const handleSubmit = async (e) => {
