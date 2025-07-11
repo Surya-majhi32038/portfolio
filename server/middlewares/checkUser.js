@@ -27,7 +27,8 @@ exports.checkUser = (req, res, next) => {
             path: "/",
             httpOnly: true,
             maxAge: 2 * 60 * 60 * 1000, // 20 minutes in ms
-            sameSite: "lax"
+            sameSite: "lax",
+            secure: process.env.NODE_ENV === "production", // ✅ secure only in live
         });
 
         return res.status(200).json({ success: true, message: 'User is logged in',user });
