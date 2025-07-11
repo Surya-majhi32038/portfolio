@@ -64,8 +64,8 @@ exports.login = async (req, res) => {
             path: '/',
             httpOnly: true,
             maxAge: 2 * 60 * 60 * 1000, // 20 minutes in ms 
-            sameSite: 'lax',
-            secure: process.env.NODE_ENV === "production", // ✅ secure only in live 
+            sameSite: 'None', // 'None' for cross-site cookies, 'Lax' for same-site cookies
+            secure: true // ✅ secure only in live
         });
         return res.status(200).json({ success: true, message: 'Login successful', id: user._id.toString() });
     } catch (error) {
