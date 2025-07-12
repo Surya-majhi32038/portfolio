@@ -7,6 +7,8 @@ import {setUserId} from "../../redux/slice/userIdSlice.js";
 import { useSelector } from "react-redux";
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
+import { IoEyeOff } from "react-icons/io5";
+import { IoEye } from "react-icons/io5";
 axios.defaults.withCredentials = true;
 function AdminLogin() {
   const [email, setEmail] = useState("");
@@ -16,6 +18,7 @@ function AdminLogin() {
   const navigate = useNavigate();
   const userId = useSelector((state) => state.userId.userId); //-> only for testing purpose
   const [isActive, setIsActive] = useState(false);
+  const [passIcon, setpassIcon] = useState('password');
   const onLoginHandle = async (e) => {
     e.preventDefault(); // '❗' Prevent page reload
     // console.log("email ->",email,"pass->",pass)
@@ -108,9 +111,16 @@ function AdminLogin() {
               <input
                 placeholder="Password"
                 className="w-[100%] py-[13px] pl-5 pr-12 bg-[#eee] rounded-lg border-none text-base font-medium placeholder:text-[#888] placeholder:font-normal outline-none "
-               type="password" required value={pass} onChange={(e)=> setPass(e.target.value)} 
-              />
-              <RiLockPasswordFill className="inline-block absolute top-5 right-5 text-[#888]" />
+               type={passIcon? 'password' : 'text'} required value={pass} onChange={(e)=> setPass(e.target.value)} 
+              /> 
+              {
+                passIcon ? (
+                  <IoEyeOff className="inline-block cursor-pointer absolute top-5 right-5 text-[#888]" onClick={()=>setpassIcon(!passIcon)} />
+                ) : (
+                  <IoEye className="inline-block cursor-pointer absolute top-5 right-5 text-[#888]" onClick={()=>setpassIcon(!passIcon)} />
+                )
+              }
+              {/* <IoEye className="inline-block absolute top-5 right-5 text-[#888]" /> */}
             </div>
             {/* button */}
             <button type="submit" className="btn mx-auto lg:mt-0 mt-4">
@@ -165,9 +175,15 @@ function AdminLogin() {
               <input
                 placeholder="Password"
                 className="w-[100%] py-[13px] pl-5 pr-12 bg-[#eee] rounded-lg border-none text-base font-medium placeholder:text-[#888] placeholder:font-normal outline-none "
-                type="password" required value={pass} onChange={(e)=> setPass(e.target.value)} 
+                type={passIcon? 'password' : 'text'} required value={pass} onChange={(e)=> setPass(e.target.value)} 
               />
-              <RiLockPasswordFill className="inline-block absolute top-5 right-5 text-[#888]" />
+              {
+                passIcon ? (
+                  <IoEyeOff className="inline-block cursor-pointer absolute top-5 right-5 text-[#888]" onClick={()=>setpassIcon(!passIcon)} />
+                ) : (
+                  <IoEye className="inline-block cursor-pointer absolute top-5 right-5 text-[#888]" onClick={()=>setpassIcon(!passIcon)} />
+                )
+              }
             </div>
             {/* button */}
             <button type="submit" className="btn mx-auto lg:mt-0 mt-4">
@@ -199,7 +215,7 @@ function AdminLogin() {
             <p className="mb-3 text-[13px] font-thin">Don't have an account?</p>
             <button
               onClick={() => setIsActive(true)}
-              className="w-40 h-11 text-base font-medium rounded-md hover:text-[#7C1E6C] transition-all delay-200 duration-1000 hover:bg-[#fff] bg-transparent border-2 border-white border-solid ph:w-28  "
+              className="w-40 h-11 text-base font-medium rounded-md hover:text-[#7C1E6C] transition-all delay-200 duration-700 hover:bg-[#fff] bg-transparent border-2 border-white border-solid ph:w-28  "
             >
               Register
             </button>
@@ -218,7 +234,7 @@ function AdminLogin() {
             </p>
             <button
               onClick={() => setIsActive(false)}
-              className="w-40 h-11 text-base font-medium rounded-md hover:text-[#7C1E6C] transition-all delay-200 duration-400 hover:bg-[#fff] bg-transparent border-2 border-white border-solid ph:w-28 "
+              className="w-40 h-11 text-base font-medium rounded-md hover:text-[#7C1E6C] transition-all delay-200 duration-700 hover:bg-[#fff] bg-transparent border-2 border-white border-solid ph:w-28 "
             >
               Login
             </button>
