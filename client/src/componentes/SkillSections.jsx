@@ -10,10 +10,10 @@ function SkillSections() {
     const skills = useSelector((state) => state.user.skills); // Access the skills from the Redux store
     // get all skills from the database
     useEffect(() => {
-        if (skills.length === 0) {
-            fetchSkills();
-        }
-        console.log("call the fetchSkills")
+        // if (skills.length === 0) {
+        //     fetchSkills();
+        // }
+        // console.log("call the fetchSkills")
         fetchSkills();
     }, []);
     const fetchSkills = async () => {

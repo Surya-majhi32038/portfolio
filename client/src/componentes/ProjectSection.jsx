@@ -17,9 +17,10 @@ function ProjectSection() {
         refS.current.scrollLeft -= 500;
     }
     useEffect(() => {
-        if (projects.length === 0) {
-            fetchProjects();
-        }
+        // if (projects.length === 0) {
+        //     fetchProjects();
+        // }
+        fetchProjects();
     }, []);
     const fetchProjects = async () => {
         const userId = localStorage.getItem("userId");
