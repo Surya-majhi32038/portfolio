@@ -9,13 +9,7 @@ function SkillSections() {
     const dispatch = useDispatch(); // Initialize the Redux dispatch function
     const skills = useSelector((state) => state.user.skills); // Access the skills from the Redux store
     // get all skills from the database
-    useEffect(() => {
-        // if (skills.length === 0) {
-        //     fetchSkills();
-        // }
-        // console.log("call the fetchSkills")
-        fetchSkills();
-    }, []);
+   
     const fetchSkills = async () => {
         const userId = localStorage.getItem("userId");
         if(!userId) {
@@ -36,6 +30,14 @@ function SkillSections() {
             console.error("Error fetching skills:", error);
         }
     };
+
+     useEffect(() => {
+        // if (skills.length === 0) {
+        //     fetchSkills();
+        // }
+        // console.log("call the fetchSkills")
+        fetchSkills();
+    }, []);
     // console.log("here are skills ",skills)
     return (
         <div data-aos="fade-right" className='mb-20 lg:mb-36'>

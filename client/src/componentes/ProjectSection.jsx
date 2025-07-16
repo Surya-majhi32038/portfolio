@@ -16,12 +16,7 @@ function ProjectSection() {
     const hScrollLeft = () => {
         refS.current.scrollLeft -= 500;
     }
-    useEffect(() => {
-        // if (projects.length === 0) {
-        //     fetchProjects();
-        // }
-        fetchProjects();
-    }, []);
+   
     const fetchProjects = async () => {
         const userId = localStorage.getItem("userId");
         if(!userId) {
@@ -41,7 +36,12 @@ function ProjectSection() {
             console.error("Error fetching skills:", error);
         }
     };
-    console.log("data from redux", projects)
+
+     useEffect(() => {
+       
+        fetchProjects();
+    }, []);
+    // console.log("data from redux", projects)
     return (
         <div data-aos="fade-down" className='mb-20 lg:mb-36'>
             <h3 className='lg:text-7xl text-3xl mb-4 font-bold gradient-text lg:mb-8'>My Projects</h3>
