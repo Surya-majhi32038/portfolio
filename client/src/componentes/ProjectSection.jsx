@@ -10,6 +10,7 @@ function ProjectSection() {
     // const projects = useSelector((state) => state.user.projects);
     const [projects, setProjects] = useState([]);
     const refS = useRef(null);
+    const [userId, setUserId] = useState(null);
 
     const hScrollRight = () => {
         refS.current.scrollLeft += 500;
@@ -19,7 +20,7 @@ function ProjectSection() {
     }
    
     const fetchProjects = async () => {
-        const userId = localStorage.getItem("userId");
+        //const userId =  localStorage.getItem("userId");
         if(!userId) {
             console.log('No user id found in local storage');
             return ;
@@ -41,7 +42,10 @@ function ProjectSection() {
 
      useEffect(() => {
        
+        setUserId(localStorage.getItem("userId"));
+    if (userId) {
         fetchProjects();
+    }
     }, []);
     // console.log("data from redux", projects)
     return (
