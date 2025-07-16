@@ -3,10 +3,11 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loggedIn } from "../../redux/slice/authSlice";
-import {setUserId} from "../../redux/slice/userIdSlice.js";
+import { setUserId } from "../../redux/slice/userIdSlice.js";
 import { useSelector } from "react-redux";
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
+import toast from "react-hot-toast";
 import { IoEyeOff } from "react-icons/io5";
 import { IoEye } from "react-icons/io5";
 axios.defaults.withCredentials = true;
@@ -18,7 +19,7 @@ function AdminLogin() {
   const navigate = useNavigate();
   const userId = useSelector((state) => state.userId.userId); //-> only for testing purpose
   const [isActive, setIsActive] = useState(false);
-  const [passIcon, setpassIcon] = useState('password');
+  const [passIcon, setpassIcon] = useState("password");
   const onLoginHandle = async (e) => {
     e.preventDefault(); // '❗' Prevent page reload
     // console.log("email ->",email,"pass->",pass)
@@ -27,15 +28,32 @@ function AdminLogin() {
       email,
       password: pass,
     });
+    console.log("res from login", res.data);
+    if (res.data.message === "incorrect password") {
+      toast.error("Incorrect password, please try again.");
+      return;
+    }
+    if (res.data.message === "sign up") {
+        toast.error("Please sign up first.");
+      return;
+    }
     if (res.data.success) {
       dispatch(loggedIn());
-        dispatch(setUserId(res.data.id));
-        localStorage.setItem("userId", JSON.stringify(res.data.id)); //  store userId in localStorage
-    //   console.log(res.data.id); test pass
+      dispatch(setUserId(res.data.id));
+      localStorage.setItem("userId", JSON.stringify(res.data.id)); //  store userId in localStorage
+      //   console.log(res.data.id); test pass
+      toast(`Welcom Back ${res.data.message}`, {
+        icon: "👏",
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
       navigate("/admin");
     }
 
-    console.log("userId from slice(onloinghandler) :", userId);
+    // console.log("userId from slice(onloinghandler) :", userId);
   };
 
   const onRegistrationHandle = async (e) => {
@@ -43,20 +61,31 @@ function AdminLogin() {
     // console.log("email ->",email,"pass->",pass)
     // console.log("port are work",import.meta.env.VITE_PORT)
     const res = await axios.post(`${import.meta.env.VITE_PORT}/api/signup`, {
-      username:user,
+      username: user,
       email,
       password: pass,
     });
+    if (res.data.message === "exists") {
+      toast.error("User already exists, please login.");
+        return;
+    }
     if (res.data.success) {
       dispatch(loggedIn());
       dispatch(setUserId(res.data.id));
-       localStorage.setItem("userId", JSON.stringify(res.data.id)); //  store userId in localStorage
+      localStorage.setItem("userId", JSON.stringify(res.data.id)); //  store userId in localStorage
+      toast(`Hello ${res.data.message}`, {
+        icon: "👏",
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
       // console.log("yes login")
       navigate("/admin");
     }
     console.log("userId from slice(onregis) :", userId);
   };
-
 
   const checkOut = async () => {
     const res = await axios.get(`${import.meta.env.VITE_PORT}/api/checkUser`, {
@@ -65,7 +94,7 @@ function AdminLogin() {
     const data = await res.data;
     if (data.success) {
       dispatch(loggedIn());
-      const value = JSON.parse(localStorage.getItem("userId"))
+      const value = JSON.parse(localStorage.getItem("userId"));
       dispatch(setUserId(value));
       navigate("/admin");
     }
@@ -74,11 +103,9 @@ function AdminLogin() {
     // console.log("call every time")
     checkOut();
     // console.log("userId from useEffect :", userId);
-  },[]);
+  }, []);
 
   return (
-    
-
     <div className="flex  justify-center items-center h-screen w-screen ">
       {/* // container */}
       <div className="relative overflow-hidden w-[850px] bg-[#F4F4F9] h-[550px] rounded-lg ph:m-3 ph:h-[95%] shadow-lg  ">
@@ -103,7 +130,10 @@ function AdminLogin() {
               <input
                 placeholder="Eamil id"
                 className="w-[100%] py-[13px] pl-5 pr-12 bg-[#eee] rounded-lg border-none text-base font-medium placeholder:text-[#888] placeholder:font-normal outline-none"
-               type="email" required value={email} onChange={(e)=> setEmail(e.target.value)}
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <FaUser className="inline-block absolute top-5 right-5 text-[#888]" />
             </div>
@@ -111,15 +141,22 @@ function AdminLogin() {
               <input
                 placeholder="Password"
                 className="w-[100%] py-[13px] pl-5 pr-12 bg-[#eee] rounded-lg border-none text-base font-medium placeholder:text-[#888] placeholder:font-normal outline-none "
-               type={passIcon? 'password' : 'text'} required value={pass} onChange={(e)=> setPass(e.target.value)} 
-              /> 
-              {
-                passIcon ? (
-                  <IoEyeOff className="inline-block cursor-pointer absolute top-5 right-5 text-[#888]" onClick={()=>setpassIcon(!passIcon)} />
-                ) : (
-                  <IoEye className="inline-block cursor-pointer absolute top-5 right-5 text-[#888]" onClick={()=>setpassIcon(!passIcon)} />
-                )
-              }
+                type={passIcon ? "password" : "text"}
+                required
+                value={pass}
+                onChange={(e) => setPass(e.target.value)}
+              />
+              {passIcon ? (
+                <IoEyeOff
+                  className="inline-block cursor-pointer absolute top-5 right-5 text-[#888]"
+                  onClick={() => setpassIcon(!passIcon)}
+                />
+              ) : (
+                <IoEye
+                  className="inline-block cursor-pointer absolute top-5 right-5 text-[#888]"
+                  onClick={() => setpassIcon(!passIcon)}
+                />
+              )}
               {/* <IoEye className="inline-block absolute top-5 right-5 text-[#888]" /> */}
             </div>
             {/* button */}
@@ -157,7 +194,10 @@ function AdminLogin() {
               <input
                 placeholder="Username"
                 className="w-[100%] py-[13px] pl-5 pr-12 bg-[#eee] rounded-lg border-none text-base font-medium placeholder:text-[#888] placeholder:font-normal outline-none "
-                type="text" required value={user} onChange={(e)=> setUser(e.target.value)}
+                type="text"
+                required
+                value={user}
+                onChange={(e) => setUser(e.target.value)}
               />
               <FaUser className="inline-block absolute top-5 right-5 text-[#888]" />
             </div>
@@ -166,7 +206,10 @@ function AdminLogin() {
               <input
                 placeholder="Eamil id"
                 className="w-[100%] py-[13px] pl-5 pr-12 bg-[#eee] rounded-lg border-none text-base font-medium placeholder:text-[#888] placeholder:font-normal outline-none "
-                type="email" required value={email} onChange={(e)=> setEmail(e.target.value)}
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <FaUser className="inline-block absolute top-5 right-5 text-[#888]" />
             </div>
@@ -175,15 +218,22 @@ function AdminLogin() {
               <input
                 placeholder="Password"
                 className="w-[100%] py-[13px] pl-5 pr-12 bg-[#eee] rounded-lg border-none text-base font-medium placeholder:text-[#888] placeholder:font-normal outline-none "
-                type={passIcon? 'password' : 'text'} required value={pass} onChange={(e)=> setPass(e.target.value)} 
+                type={passIcon ? "password" : "text"}
+                required
+                value={pass}
+                onChange={(e) => setPass(e.target.value)}
               />
-              {
-                passIcon ? (
-                  <IoEyeOff className="inline-block cursor-pointer absolute top-5 right-5 text-[#888]" onClick={()=>setpassIcon(!passIcon)} />
-                ) : (
-                  <IoEye className="inline-block cursor-pointer absolute top-5 right-5 text-[#888]" onClick={()=>setpassIcon(!passIcon)} />
-                )
-              }
+              {passIcon ? (
+                <IoEyeOff
+                  className="inline-block cursor-pointer absolute top-5 right-5 text-[#888]"
+                  onClick={() => setpassIcon(!passIcon)}
+                />
+              ) : (
+                <IoEye
+                  className="inline-block cursor-pointer absolute top-5 right-5 text-[#888]"
+                  onClick={() => setpassIcon(!passIcon)}
+                />
+              )}
             </div>
             {/* button */}
             <button type="submit" className="btn mx-auto lg:mt-0 mt-4">
@@ -208,10 +258,14 @@ function AdminLogin() {
           {/* toggle-panel toggle-left */}
           <div
             className={`absolute w-1/2 h-full z-[2] text-white flex flex-col justify-center items-center duration-1000 transition-all  ph:w-full ph:h-[30%]    ${
-              isActive ? "lg:-left-1/2 delay-[.6s] ph:bottom-[60%]  ph:-top-[50%]" : "left-0 delay-[1.2s] top-0" 
+              isActive
+                ? "lg:-left-1/2 delay-[.6s] ph:bottom-[60%]  ph:-top-[50%]"
+                : "left-0 delay-[1.2s] top-0"
             }`}
-          > 
-            <h1 className="ph:text-2xl text-4xl ph:mb-3 mb-5 font-semibold ph:font-medium">Hello, Welcome!</h1>
+          >
+            <h1 className="ph:text-2xl text-4xl ph:mb-3 mb-5 font-semibold ph:font-medium">
+              Hello, Welcome!
+            </h1>
             <p className="mb-3 text-[13px] font-thin">Don't have an account?</p>
             <button
               onClick={() => setIsActive(true)}
@@ -228,7 +282,9 @@ function AdminLogin() {
               isActive ? "right-0 delay-[1.2s] ph:bottom-0" : "ph:-bottom-[30%]"
             }`}
           >
-            <h1 className="ph:text-2xl text-4xl ph:mb-3 mb-5 font-semibold ph:font-medium">Welocome Back!</h1>
+            <h1 className="ph:text-2xl text-4xl ph:mb-3 mb-5 font-semibold ph:font-medium">
+              Welocome Back!
+            </h1>
             <p className=" mb-3 text-[13px] font-thin">
               Already have an account?
             </p>

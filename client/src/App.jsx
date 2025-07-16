@@ -3,6 +3,7 @@ import AdminLogin from './pages/Admin/AdminLogin.jsx';
 import HomePortfolio from './pages/HomePortfolio.jsx';
 import ProtectedRoute from './componentes/ProtectedRoute.jsx';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'; // last 10:19
+
 export default function App() {
   return (
     <BrowserRouter>

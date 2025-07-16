@@ -11,7 +11,7 @@ exports.signup = async (req, res) => {
         // Check if user already exists
         const existingUser = await User.findOne({ email });
         if (existingUser) {
-            return res.status(400).json({ message: 'User already exists' });
+            return res.status(200).json({ message: 'exists' });
         }
 
         // Hash the password
@@ -24,7 +24,7 @@ exports.signup = async (req, res) => {
         });
         // Save the user to the database
 
-        return res.status(201).json({ success: true, message: 'User created successfully', id: newUser._id.toString() });
+        return res.status(200).json({ success: true, message: newUser.name, id: newUser._id.toString() });
 
     } catch (error) {
         console.error('Error during signup:', error);
@@ -40,14 +40,14 @@ exports.login = async (req, res) => {
         const user = await User.findOne({ email });
         // console.log("in side login function ",user,"user id ",user?._id.toString());
         if (!user) {
-            return res.status(400).json({ message: ' sign up ' });
+            return res.status(200).json({ message: 'sign up' });
         }
         // Compare the password with the hashed password 
         // console.log("plain password -> ",password," hash password -> ",user.password)   
         const isPasswordValid = await bcrypt.compare(password, user.password);
 
         if (!isPasswordValid) {
-            return res.status(400).json({ message: 'Invalid email or password' });
+            return res.status(200).json({ message: 'incorrect password' });
         }
 
         // Check if the user is verified
@@ -67,7 +67,7 @@ exports.login = async (req, res) => {
             sameSite: 'None', // 'None' for cross-site cookies, 'Lax' for same-site cookies
             secure: true // ✅ secure only in live
         });
-        return res.status(200).json({ success: true, message: 'Login successful', id: user._id.toString() });
+        return res.status(200).json({ success: true, message: user.name, id: user._id.toString() });
     } catch (error) {
         console.error('Error during login:', error);
         return res.status(500).json({ success: false, message: 'Internal server error' });
