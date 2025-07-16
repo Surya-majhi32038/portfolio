@@ -2,7 +2,7 @@ const Skill = require("../models/skill.model.js");
 
 exports.getSkills = async (req, res) => {
     const  id  = req.query.id;
-     console.log("id :", id);
+    //  console.log("id :", id);
   try {
     const skills = await Skill.find({ owner: id });
     // console.log("skills :", skills);

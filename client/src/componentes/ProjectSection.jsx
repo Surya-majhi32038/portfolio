@@ -7,7 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setProjects } from '../redux/slice/userSlice';
 function ProjectSection() {
     const dispatch = useDispatch();
-    const projects = useSelector((state) => state.user.projects);
+    // const projects = useSelector((state) => state.user.projects);
+    const [projects, setProjects] = useState([]);
     const refS = useRef(null);
 
     const hScrollRight = () => {
@@ -30,6 +31,7 @@ function ProjectSection() {
             // console.log("in fetchSkills", response);
             const data = response.data.projects || []; // Assuming the response structure is { skills: [...] }
             console.log("Projects fetched:", response.data.projects);
+            setProjects(data); // Set the projects in local state
             // console.log("Skills fetched:", response);
             dispatch(setProjects(data)); // Dispatch the skills to the Redux store
         } catch (error) {

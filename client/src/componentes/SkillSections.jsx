@@ -7,7 +7,8 @@ import { useEffect } from 'react';
 
 function SkillSections() {
     const dispatch = useDispatch(); // Initialize the Redux dispatch function
-    const skills = useSelector((state) => state.user.skills); // Access the skills from the Redux store
+    // const skills = useSelector((state) => state.user.skills);
+    const [skills, setSkills] = useState([])
     // get all skills from the database
    
     const fetchSkills = async () => {
@@ -23,6 +24,7 @@ function SkillSections() {
             console.log("in fetchSkills", response.data.skills);
             // console.log("in fetchSkills", response);
             const data = response.data.skills || []; // Assuming the response structure is { skills: [...] }
+            setSkills(data); // Set the skills in local state
             // console.log("Skills fetched:", response);
             dispatch(setSkills(data)); // Dispatch the skills to the Redux store
             // console.log("data",data)
