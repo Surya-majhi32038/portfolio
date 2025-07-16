@@ -84,7 +84,7 @@ function AdminLogin() {
       // console.log("yes login")
       navigate("/admin");
     }
-    console.log("userId from slice(onregis) :", userId);
+    // console.log("userId from slice(onregis) :", userId);
   };
 
   const checkOut = async () => {

@@ -34,6 +34,7 @@ function ProjectSection() {
             });
             // console.log("in fetchSkills", response);
             const data = response.data.projects || []; // Assuming the response structure is { skills: [...] }
+            console.log("Projects fetched:", response.data.projects);
             // console.log("Skills fetched:", response);
             dispatch(setProjects(data)); // Dispatch the skills to the Redux store
         } catch (error) {

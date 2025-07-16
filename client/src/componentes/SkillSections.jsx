@@ -26,6 +26,7 @@ function SkillSections() {
             const response = await axios.get(`${import.meta.env.VITE_PORT}/api/getSkills`,{
                 params: { id: userId }
             });
+            console.log("in fetchSkills", response.data.skills);
             // console.log("in fetchSkills", response);
             const data = response.data.skills || []; // Assuming the response structure is { skills: [...] }
             // console.log("Skills fetched:", response);
@@ -47,7 +48,7 @@ function SkillSections() {
                 )
             }
             <div className='lg:h-[400px] h-[300px] overflow-y-scroll scroll-bar px-1'>
-                {skills.map((skill) => (
+                {skills.slice().reverse().map((skill) => (
                     <SkillCard key={skill._id} skill={skill}/>
                 ))}
             </div>
