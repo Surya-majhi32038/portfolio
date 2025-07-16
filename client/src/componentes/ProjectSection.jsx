@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ProjectCard from './ProjectCard'
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import { useRef } from 'react';

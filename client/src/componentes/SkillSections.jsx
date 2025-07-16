@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import SkillCard from './SkillCard.jsx'
 import { useDispatch, useSelector } from 'react-redux';
 import { setSkills } from '../redux/slice/userSlice';
