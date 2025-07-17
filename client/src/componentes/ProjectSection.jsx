@@ -10,8 +10,8 @@ function ProjectSection() {
     // const projects = useSelector((state) => state.user.projects);
     const [projects, setProjects] = useState([]);
     const refS = useRef(null);
-    const [userId, setUserId] = useState(null);
-
+    // const [userId, setUserId] = useState("");
+    let userId = null;
     const hScrollRight = () => {
         refS.current.scrollLeft += 500;
     }
@@ -30,6 +30,10 @@ function ProjectSection() {
                 params: { id: userId }
             });
             // console.log("in fetchSkills", response);
+           if(response.data.projects.length === 0) {
+                alert("No projects found for this user");
+                console.log("No projects found for this user");
+            }
             const data = response.data.projects || []; // Assuming the response structure is { skills: [...] }
             console.log("Projects fetched:", response.data.projects);
             setProjects(data); // Set the projects in local state
@@ -41,10 +45,17 @@ function ProjectSection() {
     };
 
      useEffect(() => {
-       
-        setUserId(localStorage.getItem("userId"));
+        // console.log("useEffect called", typeof(localStorage.getItem("userId"))); string sure 
+        // data store in localStorage is done and came rightly 
+        // console.log("userId", userId);
+        const id = localStorage.getItem("userId");
+        // setUserId(id);
+        userId = id;
+        // console.log("userId in useEffect", userId);
     if (userId) {
         fetchProjects();
+    } else {
+        console.log("User ID not found in localStorage");
     }
     }, []);
     // console.log("data from redux", projects)

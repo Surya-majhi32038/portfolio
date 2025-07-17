@@ -10,7 +10,8 @@ function SkillSections() {
   // const skills = useSelector((state) => state.user.skills);
   const [skills, setSkills] = useState([]);
   // get all skills from the database
-  const [userId, setUserId] = useState(null);
+//   const [userId, setUserId] = useState(null);
+let userId = null; // Initialize userId variable
 
   const fetchSkills = async () => {
     // const userId = localStorage.getItem("userId");
@@ -38,7 +39,9 @@ function SkillSections() {
   };
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    // setUserId(localStorage.getItem("userId"));
+    // 
+    userId = localStorage.getItem("userId");
     if (userId) {
       fetchSkills();
     }

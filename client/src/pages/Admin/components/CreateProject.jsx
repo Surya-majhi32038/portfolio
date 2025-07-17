@@ -9,11 +9,11 @@ function CreateProject() {
   const [image, setImage] = useState(null);
   const [githubLink, setGithubLink] = useState("");
   const [liveLink, setLiveLink] = useState("");
-    const [uploadImgs, setUploadImgs] = useState({
-    secureUrl: "",
-    publicId: "",
-    deleteTokent: "",
-    });
+    // const [uploadImgs, setUploadImgs] = useState({
+    // secureUrl: "",
+    // publicId: "",
+    // deleteTokent: "",
+    // });
   const userId = useSelector((state) => state.userId.userId);
   const handleSubmit = (e) => {
     const file = e.target.files[0];

@@ -35,6 +35,7 @@ function HomePortfolio() {
   const fetchData = async () => {
     console.log('inside fetchData');
             const userId = localStorage.getItem("userId");
+            console.log("userId in homeportfolio", userId);
             try {
                 const response = await axios.get(`${import.meta.env.VITE_PORT}/api/get-personal-details/${userId}`);
                 console.log(response.data.user);
