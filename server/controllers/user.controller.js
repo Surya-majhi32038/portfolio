@@ -106,8 +106,8 @@ exports.updatePersonalDetails = async(req,res) => {
         .status(201)
         .json({
           success: true,
-          message: "User Update are successfully",
-          project: newUser,
+          message: "updated",
+          user: newUser,
         });
     } catch (error) {
       return res.status(500).json({ success: false, message: error+"error ocurr when create personal details" });

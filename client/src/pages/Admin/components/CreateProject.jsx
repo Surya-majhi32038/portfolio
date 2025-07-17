@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { uploadImg } from '../../../Cloudinary/uploadImg.js';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
 function CreateProject() {
     const [name, setname] = useState('');
     const [description, setDescription] = useState('');
@@ -43,9 +44,7 @@ function CreateProject() {
                 id: userId
             });
             if(response) {
-
-                
-                alert('Project added successfully');
+                toast.success('Project added successfully');
                 setname('');
                 setDescription('');
                 setImage(null);
@@ -54,8 +53,8 @@ function CreateProject() {
             }
            
         } catch (error) {
-            console.error('Error:', error);
-            alert('An error occurred while adding the project');
+            console.error('Error adding project:', error);
+            toast.error('Failed to add project');
         }
     }
     return (

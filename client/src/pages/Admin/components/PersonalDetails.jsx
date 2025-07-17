@@ -3,6 +3,7 @@ import { uploadImg } from "../../../Cloudinary/uploadImg.js";
 import axios from "axios";
 import myImg from "../../../assets/myImg1.jpg";
 import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 function PersonalDetails() {
     const [userName, setUsreName] = useState("");
     const [userPosition, setUserPosition] = useState("");
@@ -87,7 +88,7 @@ function PersonalDetails() {
         e.preventDefault(); // prevent the re-loading of the page
 
         try {
-            console.log(userName, userPosition, userDes, userGithub, userLinkedin, userFacebook, userX, userInsta, userYoutube);
+            // console.log(userName, userPosition, userDes, userGithub, userLinkedin, userFacebook, userX, userInsta, userYoutube);
             const response = await axios.post(
                 `${import.meta.env.VITE_PORT}/api/update-personal-details`,
                 {
@@ -108,6 +109,9 @@ function PersonalDetails() {
                     owner: userId
                 }
             );
+            if(response.data.message === "updated" ) { 
+                toast.success("Updated successfully");
+            } 
             if (response) {
                 alert("Project added successfully");
                 setUsreName("");
@@ -126,8 +130,8 @@ function PersonalDetails() {
                 setUserPhone("");
             }
         } catch (error) {
-            console.error("Error:", error);
-            alert("An error occurred while adding user personal details");
+            console.error("Error updating user details:", error);
+            toast.error("Error updating detials");
         }
     };
     return (

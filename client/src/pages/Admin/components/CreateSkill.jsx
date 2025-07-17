@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 function CreateSkill() {
      const [skillName, setSkillName] = useState('');
@@ -13,7 +14,7 @@ function CreateSkill() {
                 return;
             }
             if (level < 1 || level > 10) {
-                alert('Level must be between 1 and 5');
+                toast.success('Level must be between 1 and 10');
                 return;
             }
             try {
@@ -24,14 +25,14 @@ function CreateSkill() {
                     id: userId
                 });
                 if(response) {
-                    alert('Skill added successfully');
+                   toast.success('Skill added successfully');
                     setSkillName('');
                     setLevel('');
                 }
                
             } catch (error) {
                 console.error('Error:', error);
-                alert('An error occurred while adding the skill');
+                toast.error('Failed to add skill');
             }
         }
   return (
