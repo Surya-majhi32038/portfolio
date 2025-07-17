@@ -14,7 +14,7 @@ function CreateSkill() {
                 return;
             }
             if (level < 1 || level > 10) {
-                toast.success('Level must be between 1 and 10');
+                toast.error('Level must be between 1 and 10');
                 return;
             }
             try {
