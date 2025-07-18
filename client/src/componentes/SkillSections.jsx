@@ -10,6 +10,10 @@ function SkillSections() {
   const fetchSkills = async () => {
     try {
       const userId = localStorage.getItem("userId");
+      if(!userId) {
+        console.error("User ID not found in localStorage");
+        return;
+      }
       const response = await axios.get(
         `${import.meta.env.VITE_PORT}/api/getSkills`,
         {
