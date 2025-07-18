@@ -3,13 +3,16 @@ import ProjectCard from './ProjectCard'
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import { useRef } from 'react';
 import axios from 'axios'
-import { useDispatch, useSelector } from 'react-redux';
-import { setProjects } from '../redux/slice/userSlice';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { setProjects } from '../redux/slice/userSlice';
 function ProjectSection() {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     // const projects = useSelector((state) => state.user.projects);
     // const [projects, setProjects] = useState([]);
-    const projects = useSelector((state) => state.user.projects);
+
+    // store data in useState
+    const [projects, setProjects] = useState([]);
+   
     const refS = useRef(null);
     const hScrollRight = () => {
         refS.current.scrollLeft += 500;
@@ -28,7 +31,8 @@ function ProjectSection() {
             });
            
             const data = response.data.projects || []; // Assuming 
-            dispatch(setProjects(data)); // Dispatch the skills to the Redux store
+            // dispatch(setProjects(data)); // Dispatch the skills to the Redux store
+            setProjects(data); // Set the projects in local state
         } catch (error) {
             console.error("Error fetching skills:", error);
         }

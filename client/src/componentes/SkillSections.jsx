@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import SkillCard from "./SkillCard.jsx";
-import { useDispatch, useSelector } from "react-redux";
-import { setSkills } from "../redux/slice/userSlice";
+// import { useDispatch, useSelector } from "react-redux";
+// import { setSkills } from "../redux/slice/userSlice";
 import axios from "axios";
 import { useEffect } from "react";
 
 function SkillSections() {
-  const dispatch = useDispatch(); // Initialize the Redux dispatch function
-    const skills = useSelector((state) => state.user.skills); // Access the skills from the Redux store
+    const [skills, setSkills] = useState([]); // State to manage skills
   const fetchSkills = async () => {
-    
     try {
         const userId = localStorage.getItem("userId");
       const response = await axios.get(
@@ -19,15 +17,18 @@ function SkillSections() {
         }
       );
     
-      const data = response.data.skills || []; // Assuming the response structure is { skills: [...] }
-      dispatch(setSkills(data)); // Dispatch the skills to the Redux store
-      // console.log("data",data)
+      const data = response.data.skills || []; 
+      console.log("Skills fetched:", data);
+        // dispatch(setSkills(data)); // Dispatch the skills to the Redux store
+    setSkills(data); // Set the skills in local state
+        console.log("Skills fetched (after set data):", data);
     } catch (error) {
       console.error("Error fetching skills:", error);
     }
   };
 
   useEffect(() => {
+    console.log("fetching skills");
     fetchSkills();
   }, []);
   // console.log("here are skills ",skills)
