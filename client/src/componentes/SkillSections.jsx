@@ -16,7 +16,7 @@ function SkillSections() {
           params: { id: userId },
         }
       );
-
+      console.log("Response from fetchSkills:", userId);
       console.log("Skills fetched:", response.data.skills);
       setSkills(response.data.skills); // Set the skills in local state
       console.log("Skills in state:", skills);
