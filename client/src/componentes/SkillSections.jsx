@@ -17,10 +17,9 @@ function SkillSections() {
         }
       );
 
-    //   console.log("Skills fetched:", data);
-      // dispatch(setSkills(data)); // Dispatch the skills to the Redux store
+      console.log("Skills fetched:", response.data.skills);
       setSkills(response.data.skills); // Set the skills in local state
-    //   console.log("Skills fetched (after set data):", data);
+      console.log("Skills in state:", skills);
     } catch (error) {
       console.error("Error fetching skills:", error);
     }
