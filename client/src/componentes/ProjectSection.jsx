@@ -8,10 +8,9 @@ import { setProjects } from '../redux/slice/userSlice';
 function ProjectSection() {
     const dispatch = useDispatch();
     // const projects = useSelector((state) => state.user.projects);
-    const [projects, setProjects] = useState([]);
+    // const [projects, setProjects] = useState([]);
+    const projects = useSelector((state) => state.user.projects);
     const refS = useRef(null);
-    // const [userId, setUserId] = useState("");
-    let userId = null;
     const hScrollRight = () => {
         refS.current.scrollLeft += 500;
     }
@@ -20,24 +19,15 @@ function ProjectSection() {
     }
    
     const fetchProjects = async () => {
-        //const userId =  localStorage.getItem("userId");
-        if(!userId) {
-            console.log('No user id found in local storage');
-            return ;
-        }
+
+        
         try {
+            const userId = localStorage.getItem("userId");
             const response = await axios.get(`${import.meta.env.VITE_PORT}/api/getProjects`,{
                 params: { id: userId }
             });
-            // console.log("in fetchSkills", response);
-           if(response.data.projects.length === 0) {
-                alert("No projects found for this user");
-                console.log("No projects found for this user");
-            }
-            const data = response.data.projects || []; // Assuming the response structure is { skills: [...] }
-            console.log("Projects fetched:", response.data.projects);
-            setProjects(data); // Set the projects in local state
-            // console.log("Skills fetched:", response);
+           
+            const data = response.data.projects || []; // Assuming 
             dispatch(setProjects(data)); // Dispatch the skills to the Redux store
         } catch (error) {
             console.error("Error fetching skills:", error);
@@ -45,18 +35,7 @@ function ProjectSection() {
     };
 
      useEffect(() => {
-        // console.log("useEffect called", typeof(localStorage.getItem("userId"))); string sure 
-        // data store in localStorage is done and came rightly 
-        // console.log("userId", userId);
-        const id = localStorage.getItem("userId");
-        // setUserId(id);
-        userId = id;
-        // console.log("userId in useEffect", userId);
-    if (userId) {
-        fetchProjects();
-    } else {
-        console.log("User ID not found in localStorage");
-    }
+       fetchProjects();
     }, []);
     // console.log("data from redux", projects)
     return (
