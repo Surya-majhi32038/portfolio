@@ -6,22 +6,21 @@ import axios from "axios";
 import { useEffect } from "react";
 
 function SkillSections() {
-    const [skills, setSkills] = useState([]); // State to manage skills
+  const [skills, setSkills] = useState([]); // State to manage skills
   const fetchSkills = async () => {
     try {
-        const userId = localStorage.getItem("userId");
+      const userId = localStorage.getItem("userId");
       const response = await axios.get(
         `${import.meta.env.VITE_PORT}/api/getSkills`,
         {
           params: { id: userId },
         }
       );
-    
-      const data = response.data.skills || []; 
+
       console.log("Skills fetched:", data);
-        // dispatch(setSkills(data)); // Dispatch the skills to the Redux store
-    setSkills(data); // Set the skills in local state
-        console.log("Skills fetched (after set data):", data);
+      // dispatch(setSkills(data)); // Dispatch the skills to the Redux store
+      setSkills(response.data.skills); // Set the skills in local state
+      console.log("Skills fetched (after set data):", data);
     } catch (error) {
       console.error("Error fetching skills:", error);
     }
