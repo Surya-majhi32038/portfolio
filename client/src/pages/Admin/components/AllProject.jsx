@@ -23,7 +23,7 @@ function AllProject() {
     const projects = useSelector((state) => state.user.projects); // Access the skills from the Redux store
     // const [edit, setEdit] = useState(false); // State to manage edit mode
     const userId = useSelector((state) => state.userId.userId); // Get the user ID from the Redux store
-    console.log("userId in AllProject", userId);
+   
     // get all skills from the database
     useEffect(() => {
         fetchProjects();

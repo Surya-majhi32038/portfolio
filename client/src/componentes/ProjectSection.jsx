@@ -26,7 +26,7 @@ function ProjectSection({userId}) {
         fetchProjects();
     }, []);
     const fetchProjects = async () => {
-        console.log("userId in fetchProjects", userId);
+        // console.log("userId in fetchProjects", userId);
         try {
             const response = await axios.get(`${import.meta.env.VITE_PORT}/api/getProjects`,{
                 params: { id: userId }

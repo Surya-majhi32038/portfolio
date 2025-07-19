@@ -5,7 +5,7 @@ import myImg from "../../../assets/myImg1.jpg";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 function PersonalDetails() {
-    console.log("Personal Details Rendered");
+
     const [userName, setUsreName] = useState("");
     const [userPosition, setUserPosition] = useState("");
     const [userDes, setUserDes] = useState("");
@@ -99,9 +99,9 @@ function PersonalDetails() {
                     userGithub: userGithub,
                     userLinkedin: userLinkedin,
                     userFacebook: userFacebook,
-                    userX: userX,
-                    userInsta: userInsta,
-                    userYoutube: userYoutube,
+                    userX: userX ? userX : "https://twitter.com/",
+                    userInsta: userInsta ? userInsta : "https://www.instagram.com/",
+                    userYoutube: userYoutube ? userYoutube : "https://www.youtube.com/",
                     secureUrl: imageLiveLink,
                     publicId: publicId,
                     deleteToken: deleteToken,

@@ -12,7 +12,6 @@ import { IoEyeOff } from "react-icons/io5";
 import { IoEye } from "react-icons/io5";
 axios.defaults.withCredentials = true;
 function AdminLogin() {
-    console.log("AdminLogin page is working");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [user, setUser] = useState("");
