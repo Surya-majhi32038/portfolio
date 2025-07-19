@@ -1,7 +1,7 @@
 import React from "react";
 import myImg1 from "../assets/myImg1.jpg";
 function HomeCard({ paragraph, img }) {
-  console.log("img", img, "myImg1", myImg1);
+//   console.log("img", img, "myImg1", myImg1);
   const splitParagraph = (paragraph) => {
     const sentences = paragraph
       .split(".")

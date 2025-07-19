@@ -5,15 +5,27 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Project from "./Project";
 function AllProject() {
+
+    /**
+     * HOW TO GET DATA FROM REDUX STORE
+     * -> Import useSelector from react-redux
+     * -> Use useSelector to access the state from the Redux store
+     * * HOW TO DISPATCH ACTIONS TO REDUX STORE
+     * -> Import useDispatch from react-redux
+     * -> Use useDispatch to get the dispatch function
+     * * -> Use dispatch to send actions to the Redux store
+     * * HOW TO USE ASYNC/AWAIT WITH REDUX
+     * -> Use async/await syntax to handle asynchronous operations
+     * * * HOW TO USE USEEFFECT HOOK
+     * 
+     */
     const dispatch = useDispatch(); // Initialize the Redux dispatch function
     const projects = useSelector((state) => state.user.projects); // Access the skills from the Redux store
-    const [edit, setEdit] = useState(false); // State to manage edit mode
+    // const [edit, setEdit] = useState(false); // State to manage edit mode
     const userId = useSelector((state) => state.userId.userId); // Get the user ID from the Redux store
+    console.log("userId in AllProject", userId);
     // get all skills from the database
     useEffect(() => {
-        if (projects.length === 0) {
-            fetchProjects();
-        }
         fetchProjects();
     }, []);
     const fetchProjects = async () => {
@@ -25,7 +37,7 @@ function AllProject() {
             const data = response.data.projects || []; // Assuming the response structure is { skills: [...] }
             // console.log("Skills fetched:", response);
             dispatch(setProjects(data)); // Dispatch the skills to the Redux store
-            console.log(data);
+            // console.log(data);
         } catch (error) {
             console.error("Error fetching skills:", error);
         }
@@ -56,7 +68,7 @@ function AllProject() {
               grid-cols-1 gap-5 lg:h-[65vh] h-auto w-full lg:mx-auto overflow-y-scroll scroll-bar px-1 lg:px-1">
             {
                     projects.map((project) => (
-                       <Project key={project._id} project={project} handleDelete={handleDelete}/>
+                       <Project  key={String(project._id)} project={project} handleDelete={handleDelete}/>
                     ))
                 }
             </div>

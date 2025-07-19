@@ -1,23 +1,24 @@
-import { use, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loggedIn } from "../../redux/slice/authSlice";
 import { setUserId } from "../../redux/slice/userIdSlice.js";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { FaUser } from "react-icons/fa";
-import { RiLockPasswordFill } from "react-icons/ri";
+// import { RiLockPasswordFill } from "react-icons/ri";
 import toast from "react-hot-toast";
 import { IoEyeOff } from "react-icons/io5";
 import { IoEye } from "react-icons/io5";
 axios.defaults.withCredentials = true;
 function AdminLogin() {
+    console.log("AdminLogin page is working");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [user, setUser] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userId = useSelector((state) => state.userId.userId); //-> only for testing purpose
+  //   const userId = useSelector((state) => state.userId.userId); //-> only for testing purpose
   const [isActive, setIsActive] = useState(false);
   const [passIcon, setpassIcon] = useState("password");
   const onLoginHandle = async (e) => {
@@ -28,13 +29,13 @@ function AdminLogin() {
       email,
       password: pass,
     });
-    console.log("res from login", res.data);
+    // console.log("res from login", res.data);
     if (res.data.message === "incorrect password") {
       toast.error("Incorrect password, please try again.");
       return;
     }
     if (res.data.message === "sign up") {
-        toast.error("Please sign up first.");
+      toast.error("Please sign up first.");
       return;
     }
     if (res.data.success) {
@@ -67,13 +68,13 @@ function AdminLogin() {
     });
     if (res.data.message === "exists") {
       toast.error("User already exists, please login.");
-        return;
+      return;
     }
     if (res.data.success) {
       dispatch(loggedIn());
       dispatch(setUserId(res.data.id));
       localStorage.setItem("userId", JSON.stringify(res.data.id)); //  store userId in localStorage
-      toast(`Hello ${res.data.message}`, {
+      toast(`Hello ${String(res.data.message)}`, {
         icon: "👏",
         style: {
           borderRadius: "10px",
@@ -95,14 +96,18 @@ function AdminLogin() {
     if (data.success) {
       dispatch(loggedIn());
       const value = JSON.parse(localStorage.getItem("userId"));
+      console.log("userId from checkOut :", value);
       dispatch(setUserId(value));
       navigate("/admin");
     }
   };
   useEffect(() => {
-    // console.log("call every time")
-    checkOut();
-    // console.log("userId from useEffect :", userId);
+    const raw = localStorage.getItem("userId");
+    if (raw) {
+      checkOut();
+    } else {
+      console.warn("userId not found — skipping checkOut.");
+    }
   }, []);
 
   return (

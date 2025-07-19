@@ -3,15 +3,9 @@ import ProjectCard from './ProjectCard'
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import { useRef } from 'react';
 import axios from 'axios'
-// import { useDispatch, useSelector } from 'react-redux';
-// import { setProjects } from '../redux/slice/userSlice';
-function ProjectSection() {
-    // const dispatch = useDispatch();
-    // const projects = useSelector((state) => state.user.projects);
-    // const [projects, setProjects] = useState([]);
-
-    // store data in useState
-    const [projects, setProjects] = useState([]);
+import { useDispatch, useSelector } from 'react-redux';
+import { setProjects } from '../redux/slice/userSlice';
+function ProjectSection({userId}) {
    
     const refS = useRef(null);
     const hScrollRight = () => {
@@ -20,27 +14,33 @@ function ProjectSection() {
     const hScrollLeft = () => {
         refS.current.scrollLeft -= 500;
     }
-   
+   const dispatch = useDispatch(); // Initialize the Redux dispatch function
+    const projects = useSelector((state) => state.user.projects); // Access the skills from the Redux store
+    // const userId = useSelector((state) => state.userId.userId); // Get the user ID from the Redux store
+    // const userId = JSON.parse(localStorage.getItem("userId")); // Get the user ID from localStorage
+    if(userId == null || userId == undefined || userId == "undefined"){
+        console.log("User ID is not set. Please set the user ID before fetching projects.");
+    }
+    // get all skills from the database
+    useEffect(() => {
+        fetchProjects();
+    }, []);
     const fetchProjects = async () => {
-
-        
+        console.log("userId in fetchProjects", userId);
         try {
-            const userId = localStorage.getItem("userId");
             const response = await axios.get(`${import.meta.env.VITE_PORT}/api/getProjects`,{
                 params: { id: userId }
             });
-           
-            const data = response.data.projects || []; // Assuming 
-            // dispatch(setProjects(data)); // Dispatch the skills to the Redux store
-            setProjects(data); // Set the projects in local state
+            // console.log("in fetchSkills", response);
+            const data = response.data.projects || []; // Assuming the response structure is { skills: [...] }
+            // console.log("Skills fetched:", response);
+            dispatch(setProjects(data)); // Dispatch the skills to the Redux store
+            // console.log(data);
         } catch (error) {
             console.error("Error fetching skills:", error);
         }
     };
 
-     useEffect(() => {
-       fetchProjects();
-    }, []);
     // console.log("data from redux", projects)
     return (
         <div data-aos="fade-down" className='mb-20 lg:mb-36'>

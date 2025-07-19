@@ -5,12 +5,17 @@ import AboutCard from "../componentes/AboutCard";
 import SkillSections from "../componentes/SkillSections";
 import ProjectSection from "../componentes/ProjectSection";
 import ContactMe from "../componentes/ContactMe";
+import { setUserId } from "../redux/slice/userIdSlice.js";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 function HomePortfolio() {
+    // console.log("HomePortfolio Rendered");
   const { id } = useParams();
+    const dispatch = useDispatch(); // Initialize the Redux dispatch function
+    const userId = useSelector((state) => state.userId.userId); // Get the user ID from the Redux store
  const [data, setData] = useState({
   createdAt: "",
   deletedUrl: "",
@@ -33,11 +38,9 @@ function HomePortfolio() {
 });
 
   const fetchData = async () => {
-    console.log('inside fetchData');
-            const userId = localStorage.getItem("userId");
-            // console.log("userId in homeportfolio", userId);
+    // console.log("user id set and then get in home portfolio ", userId);
             try {
-                const response = await axios.get(`${import.meta.env.VITE_PORT}/api/get-personal-details/${userId}`);
+                const response = await axios.get(`${import.meta.env.VITE_PORT}/api/get-personal-details/${id}`);
                 // console.log(response.data.user);
                 setData(response.data.user);
                 // console.log(data);
@@ -46,8 +49,11 @@ function HomePortfolio() {
             }
         };
   useEffect(() => {
-      localStorage.setItem("userId", id);
+   // console.log("userId in HomePortfolio", id);
+   // localStorage.setItem("userId", JSON.stringify(id)); // Store the user ID in localStorage
+     dispatch(setUserId(id));
       fetchData();
+          console.log("user id set and then get in home portfolio ", userId);
       AOS.init({
           duration: 1500,
         });
@@ -59,8 +65,8 @@ function HomePortfolio() {
       <PortfolioCard name={data.userName} position={data.userPosition} />
       <HomeCard paragraph={data.userDes} img={data.userImage}/>
       <AboutCard />
-      <SkillSections />
-      <ProjectSection />
+      <SkillSections userId={id}/>
+      <ProjectSection userId={id}/>
       <ContactMe userEmail={data.userEmail} userPhone={data.userPhone} userFacebook={data.userFacebook} userGithub={data.userGithub} userInsta={data.userInsta} userLinkedin={data.userLinkedin} userX={data.userX} userYoutube={data.userYoutube} />
     </div>
   );

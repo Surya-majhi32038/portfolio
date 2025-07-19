@@ -1,38 +1,38 @@
-import React, { useState } from "react";
 import SkillCard from "./SkillCard.jsx";
-// import { useDispatch, useSelector } from "react-redux";
-// import { setSkills } from "../redux/slice/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useEffect } from "react";
+import { setSkills } from "../redux/slice/userSlice.js";
 
-function SkillSections() {
-  const [skills, setSkills] = useState([]); // State to manage skills
+function SkillSections({userId}) {
+  const dispatch = useDispatch(); // Initialize the Redux dispatch function
+  const skills = useSelector((state) => state.user.skills); // Access the skills from the Redux store
+  // const userId = useSelector((state) => state.userId.userId); // Get the user ID from the Redux store
+  //const userId = JSON.parse(localStorage.getItem("userId")); // Get the user ID from localStorage
+  if (userId == null || userId == undefined || userId == "undefined") {
+    console.log(
+      "User ID is not set. Please set the user ID before fetching skills."
+    );
+  }
+  useEffect(() => {
+    fetchSkills();
+  }, []);
   const fetchSkills = async () => {
     try {
-      const userId = localStorage.getItem("userId");
-      if(!userId) {
-        console.error("User ID not found in localStorage");
-        return;
-      }
       const response = await axios.get(
         `${import.meta.env.VITE_PORT}/api/getSkills`,
         {
           params: { id: userId },
         }
       );
-      console.log("Response from fetchSkills:", userId);
-      console.log("Skills fetched:", response.data.skills);
-      setSkills(response.data.skills); // Set the skills in local state
-      console.log("Skills in state:", skills);
+      console.log("in fetchSkills", response);
+      const data = response.data.skills || []; // Assuming the response structure is { skills: [...] }
+      // console.log("Skills fetched:", response);
+      dispatch(setSkills(data)); // Dispatch the skills to the Redux store
     } catch (error) {
       console.error("Error fetching skills:", error);
     }
   };
-
-  useEffect(() => {
-    console.log("fetching skills");
-    fetchSkills();
-  }, []);
   // console.log("here are skills ",skills)
   return (
     <div data-aos="fade-right" className="mb-20 lg:mb-36">
