@@ -203,6 +203,28 @@ nav div p:nth-child(6):hover ~ span {
  
 }  
 
+ @media (max-width: 380px) {
+    .wrapper .button {
+       
+        height: 35px;
+        width: 35px;
+        display: grid;
+    }
+    .wrapper .button:hover {
+       
+        height: 35px;
+        width: 35px;
+        display: grid;
+    }
+    .wrapper .button .icons {
+        height: 35px;
+        width: 35px;
+    }
+    .wrapper .button:hover .icons{
+        height: 35px;
+        width: 35px;
+    }
+}  
 .wrapper .button:nth-child(1):hover .icons{
     background: #333;
 }
