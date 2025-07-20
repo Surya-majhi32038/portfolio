@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { uploadImg } from "../../../Cloudinary/uploadImg.js";
 import axios from "axios";
 import myImg from "../../../assets/myImg1.jpg";
@@ -98,7 +98,7 @@ function PersonalDetails() {
                     userDes: userDes,
                     userGithub: userGithub,
                     userLinkedin: userLinkedin,
-                    userFacebook: userFacebook,
+                    userFacebook: userFacebook ? userFacebook : "https://www.facebook.com/",
                     userX: userX ? userX : "https://twitter.com/",
                     userInsta: userInsta ? userInsta : "https://www.instagram.com/",
                     userYoutube: userYoutube ? userYoutube : "https://www.youtube.com/",
@@ -114,7 +114,6 @@ function PersonalDetails() {
                 toast.success("Updated successfully");
             } 
             if (response) {
-                alert("Project added successfully");
                 setUsreName("");
                 setUserDes("");
                 setUserPosition("");
