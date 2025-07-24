@@ -122,7 +122,9 @@ exports.getPersonalDetails = async (req, res) => {
         return res.status(400).json({ success: false, message: "User ID is required" });
     }
   try {
+    console.time("Backend query before call (getPersonalDetails)");
     const user = await UserInfo.findOne({ owner: userId });
+    console.timeEnd("Backend query after call (getPersonalDetails)");
     if (!user) {
       return res.status(404).json({ success: false, message: "User details not found" });
     }
