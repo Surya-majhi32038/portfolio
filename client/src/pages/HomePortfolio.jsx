@@ -41,7 +41,7 @@ function HomePortfolio() {
     // console.log("user id set and then get in home portfolio ", userId);
             try {
                 console.log("Fetching personal details before ");
-                console.time(" API call");
+                console.time("API call");
                 const response = await axios.get(`${import.meta.env.VITE_PORT}/api/get-personal-details/${id}`);
                 // console.log(response.data.user);
                  console.timeEnd("API call"); // Shows time in ms
