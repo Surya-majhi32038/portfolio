@@ -40,8 +40,10 @@ function HomePortfolio() {
   const fetchData = async () => {
     // console.log("user id set and then get in home portfolio ", userId);
             try {
+                console.time("API call");
                 const response = await axios.get(`${import.meta.env.VITE_PORT}/api/get-personal-details/${id}`);
                 // console.log(response.data.user);
+                 console.timeEnd("API call"); // Shows time in ms
                 setData(response.data.user);
                 // console.log(data);
             } catch (error) {
