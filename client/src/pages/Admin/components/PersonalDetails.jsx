@@ -40,6 +40,7 @@ function PersonalDetails() {
         // }
 
         uploadImgs = await uploadImg(file);
+        console.log("uploadImgs(after image upload on cloudinary ) :", uploadImgs.uploadedSize);
         setpublicId(uploadImgs.publicId);
         setimageLiveLink(uploadImgs.secureUrl);
         setdeleteToken(uploadImgs.deleteTokent);
