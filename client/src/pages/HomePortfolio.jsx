@@ -14,6 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 function HomePortfolio() {
     // console.log("HomePortfolio Rendered");
   const { id } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
+
     const dispatch = useDispatch(); // Initialize the Redux dispatch function
     const userId = useSelector((state) => state.userId.userId); // Get the user ID from the Redux store
  const [data, setData] = useState({
@@ -40,12 +42,13 @@ function HomePortfolio() {
   const fetchData = async () => {
     // console.log("user id set and then get in home portfolio ", userId);
             try {
-                console.log("Fetching personal details before ");
-                console.time("API call");
+                // console.log("Fetching personal details before ");
+                // console.time("API call");
                 const response = await axios.get(`${import.meta.env.VITE_PORT}/api/get-personal-details/${id}`);
+                setIsLoading(false);
                 // console.log(response.data.user);
-                 console.timeEnd("API call"); // Shows time in ms
-                console.log("Fetched personal details successfully");
+                //  console.timeEnd("API call"); // Shows time in ms
+                // console.log("Fetched personal details successfully");
                 setData(response.data.user);
                 // console.log(data);
             } catch (error) {
@@ -62,7 +65,13 @@ function HomePortfolio() {
           duration: 1500,
         });
     }, []);
-   
+   if(isLoading) {
+    return (
+        <div className="flex justify-center items-center h-screen">
+
+      <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        </div>
+    ); }
     // console.log(data);
   return (
     <div className="lg:w-[80vw] w-[90vw] lg:mt-[200px] mt-20 border-solid mx-auto">
