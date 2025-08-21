@@ -88,6 +88,14 @@ function PersonalDetails() {
 
     const updateUserDetails = async (e) => {
         e.preventDefault(); // prevent the re-loading of the page
+        if(userPhone && !/^[6-9]\d{9}$/.test(userPhone)) {
+            toast.error("Please enter a valid 10-digit Indian phone number");
+            return;
+        }
+        if (userEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail)) {
+            toast.error("Please enter a valid email address");
+            return;
+        }   
 
         try {
             // console.log(userName, userPosition, userDes, userGithub, userLinkedin, userFacebook, userX, userInsta, userYoutube);
@@ -319,7 +327,7 @@ function PersonalDetails() {
                             onChange={(e) => setUserEmail(e.target.value)}
                             placeholder="example@gamil.com"
                             className=" bg-transparent border-2   px-3 py-1  rounded-full text-gray-200 outline-none focus:border-purple-500 focus:pl-6 transition-all duration-100 lg:text-base text-sm font-mono mb-4  lg:mb-3"
-                            type="email"
+                            
                         />
                     </div>
 

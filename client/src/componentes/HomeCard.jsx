@@ -22,7 +22,7 @@ function HomeCard({ paragraph, img }) {
           Hey!
         </h3>
         <p className="lg:text-xl text-gray-300 text-justify">
-          {`${remaining}`}
+          {`${remaining == "."? "" : remaining}`}
           {/* My name is Surya, and I am a MERN Stack Developer. I am 20 years old
           from India. I have 3 years of work exprience, focusing and creating
           web applictions, design systems that adds growth to your businesses
