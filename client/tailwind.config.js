@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
         screens: {
-        'ph': { 'max': '400px' }, // ph = phone
+        'ph': { 'max': '450px' }, // ph = phone
       },
        backgroundImage: {
         'twilight-gradient': 'linear-gradient(to right, rgba(18, 18, 18, 0.9), rgba(50, 0, 50, 0.8))',
